@@ -1,0 +1,8 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "llm: live text-LLM smoke (Gemini API key and/or VLMRP_GOAL_LLM_LIVE=1)",
+    "gpu: live local model inference (requires GPU/weights; skipped by default)",
+    "integration: live Gazebo/ROS/GPU smoke",
+]

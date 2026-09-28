@@ -1,0 +1,93 @@
+{
+  "name": "hybrid_mini_eval_suite_v1",
+  "session": 17,
+  "description": "Small closed-loop MVP suite for legacy vs hybrid comparison on tabletop. ≤10 pick/place/look_at commands; enrichment out of scope.",
+  "world": "tabletop",
+  "max_steps": 10,
+  "tasks": [
+    {
+      "id": "place_cup_shelf",
+      "command": "place the red cup on the shelf",
+      "primitives": ["pick", "place"],
+      "notes": "Canonical Session 13–16 smoke task"
+    },
+    {
+      "id": "pick_cup",
+      "command": "pick the red cup",
+      "primitives": ["pick"]
+    },
+    {
+      "id": "look_box",
+      "command": "look at the blue box",
+      "primitives": ["look_at"]
+    },
+    {
+      "id": "place_box_table",
+      "command": "put the blue box on the table",
+      "primitives": ["pick", "place"]
+    },
+    {
+      "id": "pick_box",
+      "command": "pick up the blue box",
+      "primitives": ["pick"]
+    },
+    {
+      "id": "place_cup_table",
+      "command": "place the red cup on the table",
+      "primitives": ["pick", "place"]
+    },
+    {
+      "id": "look_cup",
+      "command": "look at the red cup",
+      "primitives": ["look_at"]
+    },
+    {
+      "id": "move_box_shelf",
+      "command": "move the blue box onto the shelf",
+      "primitives": ["pick", "place"],
+      "notes": "Light paraphrase of place"
+    }
+  ],
+  "modes": [
+    {
+      "id": "legacy",
+      "label": "legacy (flag OFF)",
+      "hybrid": "off",
+      "goal_backend": null,
+      "notes": "Baseline control — infer_init / infer_goal from VLM plan"
+    },
+    {
+      "id": "hybrid_mvp",
+      "label": "hybrid mvp + rule_based",
+      "hybrid": "mvp",
+      "goal_backend": "rule_based",
+      "notes": "Sessions 13–14 path"
+    },
+    {
+      "id": "hybrid_mvp_llm",
+      "label": "hybrid mvp + local_llm",
+      "hybrid": "mvp",
+      "goal_backend": "local_llm",
+      "optional": true,
+      "notes": "Session 15; skip if VRAM tight"
+    },
+    {
+      "id": "hybrid_full",
+      "label": "hybrid full (verifier)",
+      "hybrid": "full",
+      "goal_backend": "rule_based",
+      "optional": true,
+      "notes": "Session 16; needs vision VLM for YELLOW"
+    }
+  ],
+  "metrics": [
+    "success",
+    "n_steps",
+    "replan_count",
+    "wall_time_s",
+    "vlm_call_count",
+    "verdict_counts",
+    "goal_backend_used",
+    "goal_fallback_count"
+  ]
+}

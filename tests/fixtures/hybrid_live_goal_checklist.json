@@ -1,0 +1,105 @@
+{
+  "description": "Session 15 mini checklist (mock weights; CI-safe). Live: VLMRP_GOAL_LLM_LIVE=1 python scripts/smoke_hybrid_pipeline.py --live-goal --dry",
+  "session": 15,
+  "source": "dry-fixture+dino",
+  "live_weights": false,
+  "n": 5,
+  "pass_count": 5,
+  "fallback_total": 1,
+  "fallback_rate": 0.2,
+  "checklist": [
+    {
+      "id": "place",
+      "command": "place the red cup on the shelf",
+      "case": "pass",
+      "weights": "mock",
+      "ok": true,
+      "note": "",
+      "goal_facts": [
+        [
+          "on",
+          "red_cup",
+          "shelf"
+        ]
+      ],
+      "goal_backend": "local_llm",
+      "goal_backend_used": "local_llm",
+      "goal_fallback_count": 0,
+      "goal_error": null,
+      "expect_substr": "(on red_cup shelf)"
+    },
+    {
+      "id": "pick",
+      "command": "pick the red cup",
+      "case": "pass",
+      "weights": "mock",
+      "ok": true,
+      "note": "",
+      "goal_facts": [
+        [
+          "holding",
+          "red_cup"
+        ]
+      ],
+      "goal_backend": "local_llm",
+      "goal_backend_used": "local_llm",
+      "goal_fallback_count": 0,
+      "goal_error": null,
+      "expect_substr": "(holding red_cup)"
+    },
+    {
+      "id": "look",
+      "command": "look at the blue box",
+      "case": "pass",
+      "weights": "mock",
+      "ok": true,
+      "note": "",
+      "goal_facts": [
+        [
+          "camera-aimed-at",
+          "blue_box"
+        ]
+      ],
+      "goal_backend": "local_llm",
+      "goal_backend_used": "local_llm",
+      "goal_fallback_count": 0,
+      "goal_error": null,
+      "expect_substr": "(camera-aimed-at blue_box)"
+    },
+    {
+      "id": "gibberish",
+      "command": "make coffee with the red_cup",
+      "case": "fallback_or_empty",
+      "weights": "mock",
+      "ok": true,
+      "note": "both backends refused: goal generation failed (local_llm + rule_based): LLM response missing non-empty 'facts' list",
+      "goal_facts": [],
+      "goal_backend": "local_llm",
+      "goal_backend_used": null,
+      "goal_fallback_count": 0,
+      "goal_error": "goal generation failed (local_llm + rule_based): LLM response missing non-empty 'facts' list",
+      "expect_substr": null
+    },
+    {
+      "id": "invalid_json",
+      "command": "place the red cup on the shelf",
+      "case": "invalid_json",
+      "weights": "mock",
+      "ok": true,
+      "note": "",
+      "goal_facts": [
+        [
+          "on",
+          "red_cup",
+          "shelf"
+        ]
+      ],
+      "goal_backend": "local_llm",
+      "goal_backend_used": "local_llm",
+      "goal_fallback_count": 1,
+      "goal_error": "local_llm_fallback_rule_based: invalid LLM JSON: Expecting value: line 1 column 1 (char 0)",
+      "expect_substr": "(on red_cup shelf)"
+    }
+  ],
+  "note": "invalid_json always uses mocked bad generate_fn to prove validate-then-accept + rule_based fallback metrics. Set VLMRP_GOAL_LLM_LIVE=1 for real Qwen2.5-1.5B on other rows. rule_based remains hybrid default; this path is opt-in only."
+}

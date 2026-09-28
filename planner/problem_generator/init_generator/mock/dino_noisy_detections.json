@@ -1,0 +1,35 @@
+{
+  "format": "dino_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "detections": [
+    {
+      "label": "red cup",
+      "confidence": 0.87,
+      "on_surface": "table",
+      "pose": {
+        "position": {"x": 0.41, "y": -0.06, "z": 0.81},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.02, "w": 0.9998}
+      }
+    },
+    {
+      "label": "blu box",
+      "confidence": 0.72,
+      "on_surface": "table",
+      "pose": {
+        "position": {"x": 0.39, "y": 0.11, "z": 0.83},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.71, "w": 0.70}
+      }
+    },
+    {
+      "label": "shelf",
+      "confidence": 0.65,
+      "on_surface": null,
+      "pose": {
+        "position": {"x": 0.55, "y": -0.30, "z": 0.90},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "known_locations": ["table", "shelf"]
+}

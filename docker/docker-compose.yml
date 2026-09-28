@@ -1,0 +1,110 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Architecture:
+#   HOST      — VLM inference (Qwen3-VL) + pure-Python pipeline (GPU required)
+#   ros2      — ROS 2 Humble + Gazebo Classic + MoveIt 2 + robot control (sim)
+#   ros1_bridge — ROS 1 ↔ ROS 2 bridge for real robot deployment (real profile)
+#
+# Profiles:
+#   (no profile / default)  →  simulation only: docker compose up
+#   real                    →  real robot:       docker compose --profile real up
+#
+# Communication:
+#   network_mode: host  →  ROS 2 DDS multicast is shared; topics visible on host
+#   The host can publish task commands and subscribe to camera images directly.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  ros2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: vlm-robot-planner:latest
+    container_name: vlm_ros2
+
+    # Share host network: ROS 2 DDS works across host ↔ container
+    network_mode: host
+
+    # Share host IPC namespace: required for MIT-SHM X11 shared memory.
+    # Without this, Mesa's software renderer can't transfer pixels to the
+    # X server via XShmPutImage → Gazebo viewport shows black.
+    ipc: host
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_DOMAIN_ID=42   # valore unico per non mischiarsi con altri utenti ROS2 sul PC
+      - VLMRP_REPO_ROOT=/workspace  # repo root for planner/, vlm/, simulation/ imports
+      # Gazebo Classic model paths — install/ for built packages, src/ for
+      # models downloaded by bin/download_extra_scenes.sh (no rebuild needed)
+      # 3DGEMS subcategories added for realistic visual meshes
+      # 3DGEMS archives extract with double nesting: category/category/model/
+      - GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models:/workspace/ros2_ws/install/vlm_robot_planner_bringup/share/vlm_robot_planner_bringup/models:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/stationery/stationery:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/kitchen/kitchen:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/tools/tools:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/furniture/furniture:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/food/food:/workspace/ros2_ws/src/vlm_robot_planner_bringup/models/3dgems/electronics/electronics
+      - GAZEBO_RESOURCE_PATH=/usr/share/gazebo-11
+      # Boeing plugin .so path (physics-based object grasping)
+      - GAZEBO_PLUGIN_PATH=/opt/boeing_ws/install/boeing_gazebo_model_attachment_plugin/lib
+      # Gazebo GUI always on the host NVIDIA GPU (see nvidia-driver-libs mount).
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute,display
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+      - LD_LIBRARY_PATH=/usr/local/nvidia/lib
+
+    volumes:
+      # X11 socket for Gazebo / RViz2 GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Mount ROS2 source files so host edits are immediately visible inside
+      # container (colcon --symlink-install makes install/ point here)
+      - ../ros2_ws/src:/workspace/ros2_ws/src:rw
+      # Pure-Python modules (planner, vlm, simulation) — live edits
+      - ../planner:/workspace/planner:rw
+      - ../vlm:/workspace/vlm:rw
+      - ../simulation:/workspace/simulation:rw
+      - ../pddl:/workspace/pddl:rw
+      - ../scripts:/workspace/scripts:ro
+      # Shared data dir: container writes scene images, host reads them for VLM
+      - ../data:/workspace/data:rw
+      # Gazebo recordings/screenshots → visibili sull'host in data/gazebo/
+      - ../data/gazebo:/root/.gazebo:rw
+      # Host NVIDIA driver userspace (OpenGL/EGL). Populate with:
+      #   bin/sync_nvidia_gl_libs.sh
+      # Re-run after every host driver upgrade. Without this, gzclient falls
+      # onto Mesa/nouveau and SIGSEGVs on non-trivial worlds.
+      - ./nvidia-driver-libs:/usr/local/nvidia/lib:ro
+      - ./nvidia-driver-libs/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/10_nvidia.json:ro
+
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-uvm:/dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools
+      - /dev/nvidia-modeset:/dev/nvidia-modeset
+
+    stdin_open: true
+    tty: true
+
+    # Default: open a shell. Override to launch simulation directly:
+    #   docker compose run ros2 ros2 launch vlm_robot_planner_bringup simulation.launch.py
+    command: bash
+
+  # ── ROS 1 ↔ ROS 2 bridge (real robot only) ───────────────────────────────
+  # Activated with: docker compose --profile real up
+  # or via:         bin/start_bridge.sh --robot-ip <IP>
+  #
+  # ROS_MASTER_URI must point to the robot's roscore. Set it in the environment
+  # before starting, or pass it via bin/start_bridge.sh --robot-ip <IP>.
+  ros1_bridge:
+    profiles: ["real"]
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.bridge
+    image: vlm-ros1-bridge:latest
+    container_name: vlm_ros1_bridge
+    network_mode: host
+    ipc: host
+    environment:
+      - ROS_MASTER_URI=${ROS_MASTER_URI:-http://localhost:11311}
+      - ROS_DOMAIN_ID=42
+      - ROS_IP=${ROS_IP:-}
+    volumes:
+      - ../docker:/workspace/docker:ro
+    restart: unless-stopped
+    command: dynamic

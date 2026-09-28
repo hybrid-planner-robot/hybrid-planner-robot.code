@@ -1,0 +1,49 @@
+{
+  "name": "planning_eval_v3_ladder",
+  "description": "V3 mock-init campaign. Local fp16 Qwen2.5-7B/14B; Qwen3.6-35B-A3B and GLM-5.3-Flash via an OpenAI-compatible API. Suite v3 (unique gold + underspecified). API key from VLMRP_TEXT_LLM_API_KEY, never from this file.",
+  "suite": "tests/fixtures/planning_eval/suite_v3_mock.json",
+  "out_prefix": "v3",
+  "defaults": {
+    "mock_init": true,
+    "container": "vlm_ros2",
+    "timeout_s": 600,
+    "temperature": 0,
+    "api_base_url": "http://127.0.0.1:8000/v1",
+    "smoke_arms": "r1",
+    "smoke_cases": "explicit_pour"
+  },
+  "profiles": [
+    {
+      "id": "local-qwen7b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16. Re-run on suite v3 (not comparable 1:1 with L-2 v2 reports)."
+    },
+    {
+      "id": "local-qwen14b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-14B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16, ~28GB weights + KV. Close other GPU jobs first. Suite v3."
+    },
+    {
+      "id": "lab-qwen36",
+      "kind": "remote",
+      "model": "lab-qwen36",
+      "hf_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "enable_thinking": false,
+      "notes": "OpenAI-compatible vLLM. Qwen3.6-35B-A3B-FP8 (~3B active). Thinking OFF via chat_template_kwargs. Requires VLMRP_TEXT_LLM_API_KEY."
+    },
+    {
+      "id": "lab-glm53",
+      "kind": "remote",
+      "model": "lab-glm53",
+      "hf_id": "GLM-5.3-Flash",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "timeout_s": 900,
+      "notes": "OpenAI-compatible endpoint. GLM-5.3-Flash. Requires VLMRP_TEXT_LLM_API_KEY."
+    }
+  ]
+}

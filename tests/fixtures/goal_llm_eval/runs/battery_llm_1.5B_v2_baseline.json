@@ -1,0 +1,100 @@
+{
+  "battery": "goal_llm_battery_v1",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "prompt_id": "v2",
+  "mode": "local_llm",
+  "device": "auto",
+  "peak_vram_mb": 3127.7,
+  "elapsed_s": 3.35,
+  "timestamp": "2026-07-27T13:55:03.246771+00:00",
+  "summary": {
+    "n": 27,
+    "pass_rate": 0.963,
+    "levels": {
+      "L0": {
+        "n": 4,
+        "pass_rate": 1.0,
+        "exact_rate": 1.0,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 0,
+        "failed_ids": [],
+        "mean_latency_s": 0.126
+      },
+      "L1": {
+        "n": 4,
+        "pass_rate": 1.0,
+        "exact_rate": 1.0,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 0,
+        "failed_ids": [],
+        "mean_latency_s": 0.114
+      },
+      "L2": {
+        "n": 4,
+        "pass_rate": 1.0,
+        "exact_rate": 1.0,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 4,
+        "failed_ids": [],
+        "mean_latency_s": 0.12
+      },
+      "L3": {
+        "n": 5,
+        "pass_rate": 1.0,
+        "exact_rate": 1.0,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 2,
+        "failed_ids": [],
+        "mean_latency_s": 0.121
+      },
+      "L4": {
+        "n": 5,
+        "pass_rate": 0.8,
+        "exact_rate": 0.8,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 2,
+        "failed_ids": [
+          "L4-stack-rejected-base"
+        ],
+        "mean_latency_s": 0.163
+      },
+      "L5": {
+        "n": 5,
+        "pass_rate": 1.0,
+        "exact_rate": 0.2,
+        "valid_rate": 1.0,
+        "fallback_rate": 0.0,
+        "llm_beats_rule": 1,
+        "failed_ids": [],
+        "mean_latency_s": 0.098
+      }
+    },
+    "mean_latency_s": 0.124
+  },
+  "failed_cases": [
+    {
+      "id": "L4-stack-rejected-base",
+      "level_id": "L4",
+      "command": "stack bowl on plate",
+      "facts": [
+        [
+          "on",
+          "bowl",
+          "table"
+        ],
+        [
+          "on",
+          "plate",
+          "table"
+        ]
+      ],
+      "ok": true
+    }
+  ],
+  "notes": "Session 9c live baseline (L0\u2013L5, prompt v2, --no-fallback). Full dumps under data/goal_llm_eval/runs/ (gitignored)."
+}

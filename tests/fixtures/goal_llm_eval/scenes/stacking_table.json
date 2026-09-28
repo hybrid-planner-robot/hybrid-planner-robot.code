@@ -1,0 +1,36 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_stacking",
+  "gripper_empty": true,
+  "objects": [
+    {
+      "name": "bowl",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.40, "y": 0.0, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "plate",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.48, "y": 0.08, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "red_cup",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.35, "y": -0.10, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "shelf", "reachable": true}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "format": "dino_detections_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "known_locations": ["table", "shelf"],
+  "detections": [
+    {
+      "name": "red_cup",
+      "box": [118, 198, 182, 278],
+      "score": 0.871
+    },
+    {
+      "name": "blu box",
+      "box": [298, 208, 382, 292],
+      "score": 0.724
+    },
+    {
+      "name": "shelf",
+      "box": [420, 80, 580, 200],
+      "score": 0.651
+    }
+  ],
+  "poses": {
+    "red_cup": {"x": 0.41, "y": -0.06, "z": 0.81},
+    "blu_box": {"x": 0.39, "y": 0.11, "z": 0.83}
+  },
+  "on_surface": {
+    "red_cup": "table",
+    "blu_box": "table"
+  }
+}

@@ -1,0 +1,1732 @@
+{
+  "name": "planning_eval_suite_v4_kitchen_mock",
+  "description": "V4 kitchen setting. Same base families as tabletop plus household enrichment (pour/stir/cut/tilt, n=10). Symmetric with workshop.",
+  "defaults": {
+    "hybrid": "mvp",
+    "control": "fd",
+    "goal_backend": "local_llm",
+    "domain_select": "llm",
+    "scene_source": "oracle",
+    "perception_only": false,
+    "plan_only": true,
+    "max_steps": 1,
+    "arms": [
+      "llm_plan",
+      "llm_pddl",
+      "enrich",
+      "r1"
+    ],
+    "report_style": "families",
+    "world": "kitchen"
+  },
+  "phrasing": {
+    "explicit": "NL names the motor skill (or a close synonym) and its arguments.",
+    "implicit": "NL states a need, condition, or goal without naming the skill."
+  },
+  "families": {
+    "template_complete": "Fixed-domain pick/place/look-at/stack. No catalog gap. Enrich/r1 must stay on the complete path.",
+    "needs_enrichment": "A catalog skill is required. Enrich/r1 must author it; select-only should not produce a valid gap-skill plan.",
+    "ungenerable": "Nothing in the catalog can close the gap. Same four tasks on every setting. Pass = refuse, not a spurious pick/place plan.",
+    "long_sequence": "Template sequences of 4+ actions (pick/place/stack). No enrichment.",
+    "underspecified": "NL does not determine a unique modeled outcome. Pass = refuse or a plan in the allowlist; fail = spurious skill."
+  },
+  "cases": [
+    {
+      "id": "explicit_place",
+      "task": "place the mug on the tray",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "mug",
+            "tray"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_place",
+      "task": "the mug belongs on the tray, not the table",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "mug",
+            "tray"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_place_second",
+      "task": "place the cup on the tray",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "cup",
+            "table"
+          ],
+          [
+            "clear",
+            "cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "cup",
+            "tray"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_place_second",
+      "task": "the cup belongs on the tray, not the table",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "cup",
+            "table"
+          ],
+          [
+            "clear",
+            "cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "cup",
+            "tray"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_pick",
+      "task": "pick the mug",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_holding",
+      "task": "the mug should be in the gripper",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_look",
+      "task": "look at the mug",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "camera-aimed-at",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "look-at"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_look",
+      "task": "inspect the mug more closely",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "camera-aimed-at",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "look-at"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_stack",
+      "task": "stack the tea box on the plate",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "on",
+            "plate",
+            "table"
+          ],
+          [
+            "clear",
+            "plate"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "tea_box",
+            "plate"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_stack",
+      "task": "put the tea box on top of the plate",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "on",
+            "plate",
+            "table"
+          ],
+          [
+            "clear",
+            "plate"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "tea_box",
+            "plate"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_pour",
+      "task": "pour the can into the glass",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "poured",
+            "can",
+            "glass"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "pour"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-pour": [
+            "can"
+          ],
+          "can-be-poured": [
+            "glass",
+            "cup",
+            "mug",
+            "glass2"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-pour",
+            "tea_box"
+          ],
+          [
+            "can-pour",
+            "knife"
+          ],
+          [
+            "can-pour",
+            "spoon"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "implicit_fill_glass",
+      "task": "the glass should be filled from the can",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "poured",
+            "can",
+            "glass"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "pour"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-pour": [
+            "can"
+          ],
+          "can-be-poured": [
+            "glass",
+            "cup",
+            "mug",
+            "glass2"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-pour",
+            "tea_box"
+          ],
+          [
+            "can-pour",
+            "knife"
+          ],
+          [
+            "can-pour",
+            "spoon"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "implicit_fill_mug",
+      "task": "the mug should be filled from the can",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "poured",
+            "can",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "pour"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-pour": [
+            "can"
+          ],
+          "can-be-poured": [
+            "glass",
+            "cup",
+            "mug",
+            "glass2"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-pour",
+            "tea_box"
+          ],
+          [
+            "can-pour",
+            "knife"
+          ],
+          [
+            "can-pour",
+            "spoon"
+          ]
+        ]
+      },
+      "note": "Second vessel so enrichment is not glass-only."
+    },
+    {
+      "id": "explicit_stir",
+      "task": "stir the cup",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          [
+            "on",
+            "cup",
+            "table"
+          ],
+          [
+            "clear",
+            "cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stirred",
+            "cup"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stir"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-be-stirred": [
+            "cup",
+            "mug",
+            "glass"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-be-stirred",
+            "knife"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "explicit_mix",
+      "task": "mix the contents of the cup",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          [
+            "on",
+            "cup",
+            "table"
+          ],
+          [
+            "clear",
+            "cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stirred",
+            "cup"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stir"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-be-stirred": [
+            "cup",
+            "mug",
+            "glass"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-be-stirred",
+            "knife"
+          ]
+        ]
+      },
+      "note": "Synonym of stir; still names the motor action."
+    },
+    {
+      "id": "implicit_stirred",
+      "task": "the contents of the cup should be mixed",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          [
+            "on",
+            "cup",
+            "table"
+          ],
+          [
+            "clear",
+            "cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stirred",
+            "cup"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stir"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-be-stirred": [
+            "cup",
+            "mug",
+            "glass"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-be-stirred",
+            "knife"
+          ]
+        ]
+      },
+      "note": "State-level implicit stir."
+    },
+    {
+      "id": "explicit_cut",
+      "task": "cut the tea box",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "cut-open",
+            "tea_box"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "cut"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-be-cut": [
+            "tea_box"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-be-cut",
+            "can"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "implicit_cut",
+      "task": "the tea box needs to be sliced open",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "cut-open",
+            "tea_box"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "cut"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-be-cut": [
+            "tea_box"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-be-cut",
+            "can"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "explicit_tilt",
+      "task": "tilt the can",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "tilt",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "tilted",
+            "can"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "tilt"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-tilt": [
+            "can"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-tilt",
+            "tea_box"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "implicit_can_tilted",
+      "task": "the can should be tilted",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "tilt",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "tilted",
+            "can"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "tilt"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-tilt": [
+            "can"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-tilt",
+            "tea_box"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "explicit_solder",
+      "task": "solder the broken wire",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "implicit_repair",
+      "task": "the circuit is broken, join the wires",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "explicit_levitate",
+      "task": "make the cup float in the air",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "implicit_hover",
+      "task": "I want the cube to stay in the air by itself",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "explicit_long",
+      "task": "place the mug on the tray then stack the tea box on the mug",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "long_sequence",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "tea_box",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place",
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_long",
+      "task": "the mug belongs on the tray, then put the tea box on top of it",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "long_sequence",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "mug",
+            "table"
+          ],
+          [
+            "clear",
+            "mug"
+          ],
+          [
+            "on",
+            "tea_box",
+            "table"
+          ],
+          [
+            "clear",
+            "tea_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "tea_box",
+            "mug"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place",
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_handover",
+      "task": "pick the glass and give it to me",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "glass"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place"
+          ],
+          "allowed_objects": [
+            "glass"
+          ]
+        }
+      },
+      "note": "Open intent: handover is not modeled."
+    },
+    {
+      "id": "implicit_handover",
+      "task": "hand me the glass",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "glass"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place"
+          ],
+          "allowed_objects": [
+            "glass"
+          ]
+        }
+      },
+      "note": "Open intent: handover is not modeled."
+    },
+    {
+      "id": "explicit_need",
+      "task": "pour me something to drink",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "poured",
+            "can",
+            "glass"
+          ]
+        ],
+        "soft_golds": [
+          [
+            [
+              "poured",
+              "can",
+              "glass"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "cup"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "mug"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "mug",
+              "glass"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "glass2"
+            ]
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "pour"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-pour": [
+            "can"
+          ],
+          "can-be-poured": [
+            "glass",
+            "cup",
+            "mug",
+            "glass2"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-pour",
+            "tea_box"
+          ],
+          [
+            "can-pour",
+            "knife"
+          ],
+          [
+            "can-pour",
+            "spoon"
+          ]
+        ],
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "pour",
+            "place"
+          ],
+          "allowed_objects": [
+            "can",
+            "mug",
+            "glass",
+            "cup",
+            "glass2"
+          ],
+          "soft_golds": [
+            [
+              [
+                "holding",
+                "glass"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "cup"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "mug"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "can"
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "Open intent: no unique vessel."
+    },
+    {
+      "id": "implicit_need",
+      "task": "i am thirsty, can you help",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          [
+            "on",
+            "can",
+            "table"
+          ],
+          [
+            "clear",
+            "can"
+          ],
+          [
+            "on",
+            "glass",
+            "table"
+          ],
+          [
+            "clear",
+            "glass"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "poured",
+            "can",
+            "glass"
+          ]
+        ],
+        "soft_golds": [
+          [
+            [
+              "poured",
+              "can",
+              "glass"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "cup"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "mug"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "mug",
+              "glass"
+            ]
+          ],
+          [
+            [
+              "poured",
+              "can",
+              "glass2"
+            ]
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "pour"
+        ],
+        "enrich": {
+          "path": "enriched",
+          "plan": true
+        },
+        "r1": {
+          "path": "enriched",
+          "plan": true
+        },
+        "affordances": {
+          "can-pour": [
+            "can"
+          ],
+          "can-be-poured": [
+            "glass",
+            "cup",
+            "mug",
+            "glass2"
+          ]
+        },
+        "affordances_forbidden": [
+          [
+            "can-pour",
+            "tea_box"
+          ],
+          [
+            "can-pour",
+            "knife"
+          ],
+          [
+            "can-pour",
+            "spoon"
+          ]
+        ],
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "pour",
+            "place"
+          ],
+          "allowed_objects": [
+            "can",
+            "mug",
+            "glass",
+            "cup",
+            "glass2"
+          ],
+          "soft_golds": [
+            [
+              [
+                "holding",
+                "glass"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "cup"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "mug"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "can"
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "Open intent: thirst is not a modeled fluent."
+    }
+  ]
+}

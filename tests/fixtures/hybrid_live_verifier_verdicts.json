@@ -1,0 +1,358 @@
+{
+  "session": 16,
+  "dry": true,
+  "live_env": false,
+  "real_note": "skipped (set VLMRP_VLM_FUSION_LIVE=1 to exercise LiveVlmFusionClient+planner)",
+  "asserts": {
+    "GREEN_vlm_calls": 0,
+    "YELLOW_vlm_calls": 1,
+    "RED_vlm_calls": 0
+  },
+  "rows": [
+    {
+      "label": "mock",
+      "green": {
+        "verdict": "GREEN",
+        "vlm_calls": 0,
+        "tracker_updated": true
+      },
+      "yellow": {
+        "verdict": "GREEN",
+        "vlm_calls": 1,
+        "tracker_updated": true,
+        "client_call_count": 1
+      },
+      "red": {
+        "verdict": "RED",
+        "vlm_calls": 0,
+        "replan": true
+      },
+      "metrics_yellow_session": {
+        "mode": "full",
+        "scene_source": "fused",
+        "goal_backend": "rule_based",
+        "goal_backend_used": "rule_based",
+        "goal_fallback_count": 0,
+        "goal_error": null,
+        "vlm_call_count": 1,
+        "verdict_counts": {
+          "GREEN": 1,
+          "YELLOW": 0,
+          "RED": 0
+        },
+        "holding": "red_cup",
+        "goal_locked": true,
+        "goal_facts": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "last_goal_facts": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "enrichment_used": false,
+        "enrichment_actions": [],
+        "enrichment_skills": [],
+        "domain_persisted": null,
+        "domain_reused": false,
+        "domain_select_backend": null,
+        "refuse_reason": null,
+        "enrichment_authored": null,
+        "enrichment_facts": [],
+        "scene_compare": {
+          "oracle": {
+            "objects": [
+              "red_cup",
+              "blue_box"
+            ],
+            "object_sources": {
+              "red_cup": "oracle",
+              "blue_box": "oracle"
+            },
+            "locations": [
+              "table",
+              "shelf"
+            ],
+            "on": [
+              [
+                "red_cup",
+                "table"
+              ],
+              [
+                "blue_box",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "oracle"
+            ],
+            "fusion_notes": []
+          },
+          "dino": {
+            "objects": [
+              "red_cup",
+              "blu_box"
+            ],
+            "object_sources": {
+              "red_cup": "dino",
+              "blu_box": "dino"
+            },
+            "locations": [
+              "shelf",
+              "table"
+            ],
+            "on": [
+              [
+                "red_cup",
+                "table"
+              ],
+              [
+                "blu_box",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "dino"
+            ],
+            "fusion_notes": []
+          },
+          "fused": {
+            "objects": [
+              "blu_box",
+              "blue_box",
+              "red_cup"
+            ],
+            "object_sources": {
+              "blu_box": "dino",
+              "blue_box": "oracle",
+              "red_cup": "oracle"
+            },
+            "locations": [
+              "shelf",
+              "table"
+            ],
+            "on": [
+              [
+                "blu_box",
+                "table"
+              ],
+              [
+                "blue_box",
+                "table"
+              ],
+              [
+                "red_cup",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "oracle",
+              "dino",
+              "tracker",
+              "fusion"
+            ],
+            "fusion_notes": [
+              "name mismatch: dino-only detection 'blu_box'",
+              "name mismatch: oracle-only object 'blue_box'",
+              "object 'red_cup': kept oracle over dino"
+            ]
+          },
+          "scene_source": "fused",
+          "fused_from": {
+            "oracle": true,
+            "dino": true,
+            "sim_like": true,
+            "requested": "fused",
+            "init_fed_by": "fused",
+            "perception_only": false
+          }
+        }
+      }
+    },
+    {
+      "label": "live_client_injected",
+      "green": {
+        "verdict": "GREEN",
+        "vlm_calls": 0,
+        "tracker_updated": true
+      },
+      "yellow": {
+        "verdict": "GREEN",
+        "vlm_calls": 1,
+        "tracker_updated": true,
+        "client_call_count": 1
+      },
+      "red": {
+        "verdict": "RED",
+        "vlm_calls": 0,
+        "replan": true
+      },
+      "metrics_yellow_session": {
+        "mode": "full",
+        "scene_source": "fused",
+        "goal_backend": "rule_based",
+        "goal_backend_used": "rule_based",
+        "goal_fallback_count": 0,
+        "goal_error": null,
+        "vlm_call_count": 1,
+        "verdict_counts": {
+          "GREEN": 1,
+          "YELLOW": 0,
+          "RED": 0
+        },
+        "holding": "red_cup",
+        "goal_locked": true,
+        "goal_facts": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "last_goal_facts": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "enrichment_used": false,
+        "enrichment_actions": [],
+        "enrichment_skills": [],
+        "domain_persisted": null,
+        "domain_reused": false,
+        "domain_select_backend": null,
+        "refuse_reason": null,
+        "enrichment_authored": null,
+        "enrichment_facts": [],
+        "scene_compare": {
+          "oracle": {
+            "objects": [
+              "red_cup",
+              "blue_box"
+            ],
+            "object_sources": {
+              "red_cup": "oracle",
+              "blue_box": "oracle"
+            },
+            "locations": [
+              "table",
+              "shelf"
+            ],
+            "on": [
+              [
+                "red_cup",
+                "table"
+              ],
+              [
+                "blue_box",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "oracle"
+            ],
+            "fusion_notes": []
+          },
+          "dino": {
+            "objects": [
+              "red_cup",
+              "blu_box"
+            ],
+            "object_sources": {
+              "red_cup": "dino",
+              "blu_box": "dino"
+            },
+            "locations": [
+              "shelf",
+              "table"
+            ],
+            "on": [
+              [
+                "red_cup",
+                "table"
+              ],
+              [
+                "blu_box",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "dino"
+            ],
+            "fusion_notes": []
+          },
+          "fused": {
+            "objects": [
+              "blu_box",
+              "blue_box",
+              "red_cup"
+            ],
+            "object_sources": {
+              "blu_box": "dino",
+              "blue_box": "oracle",
+              "red_cup": "oracle"
+            },
+            "locations": [
+              "shelf",
+              "table"
+            ],
+            "on": [
+              [
+                "blu_box",
+                "table"
+              ],
+              [
+                "blue_box",
+                "table"
+              ],
+              [
+                "red_cup",
+                "table"
+              ]
+            ],
+            "gripper_empty": true,
+            "holding": null,
+            "sources_used": [
+              "oracle",
+              "dino",
+              "tracker",
+              "fusion"
+            ],
+            "fusion_notes": [
+              "name mismatch: dino-only detection 'blu_box'",
+              "name mismatch: oracle-only object 'blue_box'",
+              "object 'red_cup': kept oracle over dino"
+            ]
+          },
+          "scene_source": "fused",
+          "fused_from": {
+            "oracle": true,
+            "dino": true,
+            "sim_like": true,
+            "requested": "fused",
+            "init_fed_by": "fused",
+            "perception_only": false
+          }
+        }
+      }
+    }
+  ],
+  "note": "Mock path is CI default. LiveVlmFusionClient is wired in run_loop_host --hybrid full (reuses planning VLM). VLM never authors :init alone \u2014 only YELLOW relation patches."
+}

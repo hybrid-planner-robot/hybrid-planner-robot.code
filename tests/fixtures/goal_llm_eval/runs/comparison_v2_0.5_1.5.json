@@ -1,0 +1,172 @@
+{
+  "timestamp": "2026-07-27T13:55:03.277340+00:00",
+  "prompt_id": "v2",
+  "levels": "L0,L1,L2,L3,L4,L5",
+  "runs": [
+    {
+      "model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "short_label": "0.5B",
+      "tier": null,
+      "params_b": null,
+      "peak_vram_mb": 1053.1,
+      "elapsed_s": 3.08,
+      "summary": {
+        "n": 27,
+        "pass_rate": 0.778,
+        "levels": {
+          "L0": {
+            "n": 4,
+            "pass_rate": 0.75,
+            "exact_rate": 0.75,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 0,
+            "failed_ids": [
+              "L0-look"
+            ],
+            "mean_latency_s": 0.235
+          },
+          "L1": {
+            "n": 4,
+            "pass_rate": 0.75,
+            "exact_rate": 0.75,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 0,
+            "failed_ids": [
+              "L1-grasp"
+            ],
+            "mean_latency_s": 0.085
+          },
+          "L2": {
+            "n": 4,
+            "pass_rate": 0.75,
+            "exact_rate": 0.75,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 3,
+            "failed_ids": [
+              "L2-please-pick"
+            ],
+            "mean_latency_s": 0.093
+          },
+          "L3": {
+            "n": 5,
+            "pass_rate": 0.8,
+            "exact_rate": 0.8,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 1,
+            "failed_ids": [
+              "L3-the-cup-on-table"
+            ],
+            "mean_latency_s": 0.091
+          },
+          "L4": {
+            "n": 5,
+            "pass_rate": 0.6,
+            "exact_rate": 0.6,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 1,
+            "failed_ids": [
+              "L4-stack-rejected-base",
+              "L4-and-goal"
+            ],
+            "mean_latency_s": 0.105
+          },
+          "L5": {
+            "n": 5,
+            "pass_rate": 1.0,
+            "exact_rate": 0.2,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 1,
+            "failed_ids": [],
+            "mean_latency_s": 0.089
+          }
+        },
+        "mean_latency_s": 0.114
+      },
+      "model_notes": null
+    },
+    {
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "short_label": "1.5B",
+      "tier": null,
+      "params_b": null,
+      "peak_vram_mb": 3127.7,
+      "elapsed_s": 3.35,
+      "summary": {
+        "n": 27,
+        "pass_rate": 0.963,
+        "levels": {
+          "L0": {
+            "n": 4,
+            "pass_rate": 1.0,
+            "exact_rate": 1.0,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 0,
+            "failed_ids": [],
+            "mean_latency_s": 0.126
+          },
+          "L1": {
+            "n": 4,
+            "pass_rate": 1.0,
+            "exact_rate": 1.0,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 0,
+            "failed_ids": [],
+            "mean_latency_s": 0.114
+          },
+          "L2": {
+            "n": 4,
+            "pass_rate": 1.0,
+            "exact_rate": 1.0,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 4,
+            "failed_ids": [],
+            "mean_latency_s": 0.12
+          },
+          "L3": {
+            "n": 5,
+            "pass_rate": 1.0,
+            "exact_rate": 1.0,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 2,
+            "failed_ids": [],
+            "mean_latency_s": 0.121
+          },
+          "L4": {
+            "n": 5,
+            "pass_rate": 0.8,
+            "exact_rate": 0.8,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 2,
+            "failed_ids": [
+              "L4-stack-rejected-base"
+            ],
+            "mean_latency_s": 0.163
+          },
+          "L5": {
+            "n": 5,
+            "pass_rate": 1.0,
+            "exact_rate": 0.2,
+            "valid_rate": 1.0,
+            "fallback_rate": 0.0,
+            "llm_beats_rule": 1,
+            "failed_ids": [],
+            "mean_latency_s": 0.098
+          }
+        },
+        "mean_latency_s": 0.124
+      },
+      "model_notes": null
+    }
+  ]
+}

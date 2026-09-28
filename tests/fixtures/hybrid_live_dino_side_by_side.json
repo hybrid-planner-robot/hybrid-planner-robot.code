@@ -1,0 +1,129 @@
+{
+  "description": "Session 14 sample: oracle + DINO fixture \u2192 fused SceneState side-by-side (offline; mirrors live --live-dino --dry).",
+  "scene_compare": {
+    "oracle": {
+      "objects": [
+        "red_cup",
+        "blue_box"
+      ],
+      "object_sources": {
+        "red_cup": "oracle",
+        "blue_box": "oracle"
+      },
+      "locations": [
+        "table",
+        "shelf"
+      ],
+      "on": [
+        [
+          "red_cup",
+          "table"
+        ],
+        [
+          "blue_box",
+          "table"
+        ]
+      ],
+      "gripper_empty": true,
+      "holding": null,
+      "sources_used": [
+        "oracle"
+      ],
+      "fusion_notes": []
+    },
+    "dino": {
+      "objects": [
+        "red_cup",
+        "blu_box"
+      ],
+      "object_sources": {
+        "red_cup": "dino",
+        "blu_box": "dino"
+      },
+      "locations": [
+        "shelf",
+        "table"
+      ],
+      "on": [
+        [
+          "red_cup",
+          "table"
+        ],
+        [
+          "blu_box",
+          "table"
+        ]
+      ],
+      "gripper_empty": true,
+      "holding": null,
+      "sources_used": [
+        "dino"
+      ],
+      "fusion_notes": []
+    },
+    "fused": {
+      "objects": [
+        "blu_box",
+        "blue_box",
+        "red_cup"
+      ],
+      "object_sources": {
+        "blu_box": "dino",
+        "blue_box": "oracle",
+        "red_cup": "oracle"
+      },
+      "locations": [
+        "shelf",
+        "table"
+      ],
+      "on": [
+        [
+          "blu_box",
+          "table"
+        ],
+        [
+          "blue_box",
+          "table"
+        ],
+        [
+          "red_cup",
+          "table"
+        ]
+      ],
+      "gripper_empty": true,
+      "holding": null,
+      "sources_used": [
+        "oracle",
+        "dino",
+        "tracker",
+        "fusion"
+      ],
+      "fusion_notes": [
+        "name mismatch: dino-only detection 'blu_box'",
+        "name mismatch: oracle-only object 'blue_box'",
+        "object 'red_cup': kept oracle over dino"
+      ]
+    }
+  },
+  "goal_facts": [
+    [
+      "on",
+      "red_cup",
+      "shelf"
+    ]
+  ],
+  "pddl_excerpt_init_on": [
+    [
+      "blu_box",
+      "table"
+    ],
+    [
+      "blue_box",
+      "table"
+    ],
+    [
+      "red_cup",
+      "table"
+    ]
+  ]
+}

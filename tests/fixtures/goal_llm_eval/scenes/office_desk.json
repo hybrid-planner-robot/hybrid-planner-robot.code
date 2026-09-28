@@ -1,0 +1,87 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "gripper_empty": true,
+  "objects": [
+    {
+      "name": "pen",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.45, "y": -0.08, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "smartphone",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.40, "y": 0.10, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "mouse",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.50, "y": 0.05, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "bottle",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.35, "y": -0.12, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "cup",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.38, "y": -0.05, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "scissors",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.48, "y": -0.15, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "notebook",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.42, "y": 0.0, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "laptop",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.55, "y": 0.0, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "keyboard",
+      "location": "desk",
+      "pose": {
+        "position": {"x": 0.50, "y": -0.05, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "locations": [
+    {"name": "desk", "reachable": true},
+    {"name": "notebook", "reachable": true},
+    {"name": "keyboard", "reachable": true},
+    {"name": "laptop", "reachable": true},
+    {"name": "cup", "reachable": true}
+  ]
+}

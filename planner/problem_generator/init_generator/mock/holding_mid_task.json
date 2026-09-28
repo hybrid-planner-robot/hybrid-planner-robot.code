@@ -1,0 +1,15 @@
+{
+  "format": "tracker_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "holding": "red_cup",
+  "camera_aimed_at": "red_cup",
+  "gripper_empty": false,
+  "objects": [
+    {"name": "red_cup", "type": "item", "clear": true}
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "shelf", "reachable": true}
+  ]
+}

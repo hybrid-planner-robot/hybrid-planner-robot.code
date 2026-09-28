@@ -1,0 +1,65 @@
+{
+  "name": "enrichment_live_suite_v1",
+  "session": 30,
+  "description": "Live Gazebo demo of the closed-catalog enrichment loop. Each case runs the full host loop (select → enrich/refuse → FD → execute) so the process is visible in the sim. Default world is tabletop: the Gazebo GUI is stable there under software GL (the container has no NVIDIA userspace). Pour/stir cases switch to kitchen — physics still runs, but gzclient may crash on that heavier scene without nvidia-container-toolkit; the terminal still shows the full neurosymbolic path. Scoring targets complete/enriched/refused, not motion success.",
+  "defaults": {
+    "world": "tabletop",
+    "hybrid": "mvp",
+    "control": "fd",
+    "goal_backend": "local_llm",
+    "online_enrichment": true,
+    "domain_select": "llm",
+    "max_steps": 10
+  },
+  "cases": [
+    {
+      "id": "complete_place",
+      "task": "place the wood cube on the shelf",
+      "world": "tabletop",
+      "expect": {"path": "complete"},
+      "note": "Fixed domain suffices — enricher must not be called. wood_cube (5 cm wooden cube) so top_down grasp under FD is fine; GUI-stable world."
+    },
+    {
+      "id": "paraphrase_drink",
+      "task": "get me something to drink",
+      "world": "kitchen",
+      "expect": {"path": "enriched", "skill": "pour"},
+      "note": "Paraphrase: never says pour. Needs kitchen vessels (can/glass)."
+    },
+    {
+      "id": "paraphrase_thirsty",
+      "task": "i am thirsty, can you help",
+      "world": "kitchen",
+      "expect": {"path": "enriched", "skill": "pour"},
+      "note": "Same gap, stated as a condition."
+    },
+    {
+      "id": "explicit_pour",
+      "task": "pour the can into the glass",
+      "world": "kitchen",
+      "expect": {"path": "enriched", "skill": "pour"},
+      "note": "Literal phrasing — keyword and LLM both should catch it."
+    },
+    {
+      "id": "paraphrase_stir",
+      "task": "the sugar has settled at the bottom of the cup",
+      "world": "kitchen",
+      "expect": {"path": "enriched", "skill": "stir"},
+      "note": "Second catalog skill so the suite is not pour-only."
+    },
+    {
+      "id": "refuse_solder",
+      "task": "solder the broken wire on the board",
+      "world": "tabletop",
+      "expect": {"path": "refused"},
+      "note": "Real gap, no catalog skill — refuse, never invent. GUI-stable."
+    },
+    {
+      "id": "refuse_levitate",
+      "task": "make the cup float in the air",
+      "world": "tabletop",
+      "expect": {"path": "refused"},
+      "note": "Physically impossible for this robot. GUI-stable."
+    }
+  ]
+}

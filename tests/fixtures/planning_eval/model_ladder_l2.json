@@ -1,0 +1,102 @@
+{
+  "name": "planning_eval_l2_ladder",
+  "description": "L-2 mock-init campaign. Local fp16: Qwen2.5-7B / 14B. Next size: Ollama Qwen2.5-32B Q4. Remote SSH profiles are optional.",
+  "suite": "tests/fixtures/planning_eval/suite_v2_mock.json",
+  "tesla_host": "gpu-host.example.com",
+  "defaults": {
+    "mock_init": true,
+    "container": "vlm_ros2",
+    "timeout_s": 600,
+    "enable_thinking": false,
+    "temperature": 0,
+    "smoke_arms": "r1",
+    "smoke_cases": "explicit_pour"
+  },
+  "profiles": [
+    {
+      "id": "local-qwen15b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "skip_default": true,
+      "notes": "Size floor. Smoke already run 20260831_150843 (R1 refuse on invalid PDDL). Not part of the 7B/14B campaign."
+    },
+    {
+      "id": "local-qwen7b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16. Smoke before a full re-run."
+    },
+    {
+      "id": "local-qwen14b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-14B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16, ~28GB weights + KV on 32GB. Run done l2_local-qwen14b_run_20260901_072608."
+    },
+    {
+      "id": "local-qwen32b",
+      "kind": "api",
+      "port": 11434,
+      "model": "qwen2.5:32b-instruct-q4_K_M",
+      "arms": "r1,enrich",
+      "timeout_s": 600,
+      "notes": "Ollama Q4_K_M (~20GB). Not fp16. Smoke then r1,enrich; add llm_plan,llm_pddl after."
+    },
+    {
+      "id": "tesla-qwen7b",
+      "kind": "tesla",
+      "port": 8080,
+      "systemd": "llama-qwen2.5-7b",
+      "model": "qwen2.5-7b-instruct-q4_k_m.gguf",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "skip_default": true,
+      "notes": "Optional SSH-tunneled llama.cpp server. Skip unless you have a remote GPU host."
+    },
+    {
+      "id": "tesla-qwen14b",
+      "kind": "tesla",
+      "port": 8086,
+      "systemd": "llama-qwen14b",
+      "model": "qwen2.5-14b-instruct-q4_k_m.gguf",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "skip_default": true,
+      "notes": "PARKED."
+    },
+    {
+      "id": "tesla-qwen32b",
+      "kind": "tesla",
+      "port": 8068,
+      "systemd": "llama-qwen32b",
+      "model": "qwen2.5-32b-instruct-q4_k_m-00001-of-00005.gguf",
+      "arms": "r1,enrich",
+      "timeout_s": 600,
+      "skip_default": true,
+      "notes": "PARKED."
+    },
+    {
+      "id": "tesla-qwen72b",
+      "kind": "tesla",
+      "port": 8093,
+      "systemd": "llama-qwen2.5-72b",
+      "systemd_alt": "llama-qwen2.5-72",
+      "model": "qwen2.5-72b-instruct-gguf",
+      "model_name_unconfirmed": true,
+      "arms": "r1,enrich",
+      "timeout_s": 900,
+      "skip_default": true,
+      "notes": "PARKED."
+    },
+    {
+      "id": "tesla-llama3-8b",
+      "kind": "tesla",
+      "port": 8082,
+      "systemd": "llama-llama3-8b",
+      "model": "Meta-Llama-3-8B-Instruct-Q4_K_M.gguf",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "skip_default": true,
+      "notes": "PARKED."
+    }
+  ]
+}

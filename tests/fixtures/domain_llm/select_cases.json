@@ -1,0 +1,69 @@
+{
+  "description": "Session 29 offline fixtures: canned single-text-LLM replies for domain selection + completeness. Keyed by a substring of the task so one mock generate_fn serves the whole suite.",
+  "cases": [
+    {
+      "id": "paraphrase_drink",
+      "match": "something to drink",
+      "note": "Paraphrase — never says 'pour' and names no vessel; the keyword fallback reads it as complete.",
+      "reply": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "needed_skills": ["pour"],
+        "reason": "serving a drink means transferring liquid from the bottle into the glass"
+      }
+    },
+    {
+      "id": "paraphrase_drink_en",
+      "match": "i am thirsty",
+      "note": "English paraphrase of the same gap.",
+      "reply": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "needed_skills": ["pour"],
+        "reason": "the robot must fill the glass from the bottle"
+      }
+    },
+    {
+      "id": "complete_place",
+      "match": "place red_cup on shelf",
+      "reply": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "needed_skills": [],
+        "reason": "pick and place already exist in the template"
+      }
+    },
+    {
+      "id": "complete_stack",
+      "match": "stack blue_block on red_block",
+      "reply": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "needed_skills": [],
+        "reason": "stack is already defined"
+      }
+    },
+    {
+      "id": "no_catalog_skill",
+      "match": "solder the broken wire",
+      "note": "Gap real, but nothing in the closed catalog can close it → refuse.",
+      "reply": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "needed_skills": [],
+        "reason": "no catalog skill can solder"
+      }
+    },
+    {
+      "id": "hallucinated_skill",
+      "match": "levitate the cup",
+      "note": "Model names a skill outside the catalog; it must be dropped, not grounded.",
+      "reply": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "needed_skills": ["levitate"],
+        "reason": "the cup must float"
+      }
+    }
+  ]
+}

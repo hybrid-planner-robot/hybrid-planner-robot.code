@@ -1,0 +1,140 @@
+{
+  "description": "Session 29 offline fixtures: canned single-text-LLM enrichment replies, keyed by the catalog skill the enricher was allowed to ground.",
+  "cases": {
+    "pour": {
+      "skill": "pour",
+      "action": {
+        "name": "pour",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(and (holding ?src) (camera-aimed-at ?dst))",
+        "effect": "(and (poured ?src ?dst) (clear ?src))"
+      },
+      "new_predicates": ["(poured ?src - item ?dst - item)"],
+      "new_types": [],
+      "reason": "pour tilts the held source vessel over the target vessel"
+    },
+    "stir": {
+      "skill": "stir",
+      "action": {
+        "name": "stir",
+        "parameters": "(?c - item)",
+        "precondition": "(and (camera-aimed-at ?c) (gripper-empty))",
+        "effect": "(and (stirred ?c))"
+      },
+      "new_predicates": ["(stirred ?c - item)"],
+      "new_types": [],
+      "reason": "stir moves the held tool inside the container"
+    },
+    "cut": {
+      "skill": "cut",
+      "action": {
+        "name": "cut",
+        "parameters": "(?i - item)",
+        "precondition": "(and (camera-aimed-at ?i))",
+        "effect": "(and (cut-open ?i))"
+      },
+      "new_predicates": ["(cut-open ?i - item)"],
+      "new_types": [],
+      "reason": "cut makes downward strokes on the workpiece"
+    },
+    "drill": {
+      "skill": "drill",
+      "action": {
+        "name": "drill",
+        "parameters": "(?i - item)",
+        "precondition": "(and (holding ?i))",
+        "effect": "(and (drilled ?i) (clear ?i))"
+      },
+      "new_predicates": ["(drilled ?i - item)"],
+      "new_types": [],
+      "reason": "drill bores a hole in the workpiece"
+    },
+    "paint": {
+      "skill": "paint",
+      "action": {
+        "name": "paint",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(and (holding ?src) (camera-aimed-at ?dst))",
+        "effect": "(and (painted ?src ?dst) (clear ?src))"
+      },
+      "new_predicates": ["(painted ?src - item ?dst - item)"],
+      "new_types": [],
+      "reason": "paint coats the target from the held source"
+    },
+    "clamp": {
+      "skill": "clamp",
+      "action": {
+        "name": "clamp",
+        "parameters": "(?i - item)",
+        "precondition": "(and (holding ?i))",
+        "effect": "(and (clamped ?i) (clear ?i))"
+      },
+      "new_predicates": ["(clamped ?i - item)"],
+      "new_types": [],
+      "reason": "clamp secures the workpiece"
+    }
+  },
+  "invalid": {
+    "open_vocab_skill": {
+      "skill": "levitate",
+      "action": {
+        "name": "levitate",
+        "parameters": "(?i - item)",
+        "precondition": "(gripper-empty)",
+        "effect": "(and (floating ?i))"
+      },
+      "new_predicates": ["(floating ?i - item)"],
+      "reason": "not in the catalog"
+    },
+    "name_mismatch": {
+      "skill": "pour",
+      "action": {
+        "name": "decant",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(holding ?src)",
+        "effect": "(and (poured ?src ?dst))"
+      },
+      "reason": "renamed action cannot be dispatched"
+    },
+    "wrong_arity": {
+      "skill": "pour",
+      "action": {
+        "name": "pour",
+        "parameters": "(?src - item)",
+        "precondition": "(holding ?src)",
+        "effect": "(and (poured ?src))"
+      },
+      "reason": "pour needs a source and a target"
+    },
+    "unbalanced_effect": {
+      "skill": "pour",
+      "action": {
+        "name": "pour",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(holding ?src)",
+        "effect": "(and (poured ?src ?dst)"
+      },
+      "reason": "broken s-expression"
+    },
+    "negative_only_effect": {
+      "skill": "pour",
+      "action": {
+        "name": "pour",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(holding ?src)",
+        "effect": "(and (not (holding ?src)))"
+      },
+      "reason": "no positive fact to use as a goal"
+    },
+    "unbound_variable": {
+      "skill": "pour",
+      "action": {
+        "name": "pour",
+        "parameters": "(?src - item ?dst - item)",
+        "precondition": "(holding ?src)",
+        "effect": "(and (poured ?src ?vessel))"
+      },
+      "reason": "?vessel is never declared"
+    }
+  }
+}

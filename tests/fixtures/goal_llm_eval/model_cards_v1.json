@@ -1,0 +1,34 @@
+{
+  "name": "goal_llm_ladder_v1",
+  "description": "Session 9c candidate ladder under §3.3.1 ceiling (≤ perceptual Qwen3-VL-8B). Adjust to machine VRAM; never co-load a goal model that exceeds the experiment VLM budget.",
+  "ceiling": {
+    "perceptual_vlm": "Qwen/Qwen3-VL-8B-Instruct",
+    "max_params_b": 8
+  },
+  "models": [
+    {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "tier": "small",
+      "params_b": 0.5,
+      "notes": "Speed / low-VRAM floor; expect weaker L3–L5."
+    },
+    {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "tier": "default",
+      "params_b": 1.5,
+      "notes": "Recommended default after Session 9c (with prompt v2)."
+    },
+    {
+      "id": "Qwen/Qwen2.5-3B-Instruct",
+      "tier": "mid",
+      "params_b": 3.0,
+      "notes": "Mid ladder; run when VRAM allows alongside or instead of VLM."
+    },
+    {
+      "id": "Qwen/Qwen2.5-7B-Instruct",
+      "tier": "upper",
+      "params_b": 7.0,
+      "notes": "Upper bound under 8B ceiling; only if peak VRAM fits experiment budget."
+    }
+  ]
+}

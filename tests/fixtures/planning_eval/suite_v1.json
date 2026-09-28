@@ -1,0 +1,522 @@
+{
+  "name": "planning_eval_suite_v1",
+  "description": "Planning-only battery (active perception + hybrid :init/:goal + Fast Downward; no arm execution). Two arms: domain selection without enrichment, and closed-catalog enrichment. Phrasing is explicit vs implicit (LLM translation load). Family splits 10 template-complete (claim 1), 10 enrichment-gap (claim 2), and 4 ungenerable refuse (claim 3). Claim 2 is never the sum of claim 1.",
+  "defaults": {
+    "hybrid": "mvp",
+    "control": "fd",
+    "goal_backend": "local_llm",
+    "domain_select": "llm",
+    "scene_source": "dino",
+    "perception_only": true,
+    "plan_only": true,
+    "max_steps": 1
+  },
+  "phrasing": {
+    "explicit": "NL names the motor skill (or a close synonym) and its arguments. Example: pick the bottle / pour the can into the glass.",
+    "implicit": "NL states a need, condition, or goal without naming the skill. Example: I am thirsty."
+  },
+  "families": {
+    "template_complete": "A fixed domain template already has the actions. Claim 1 = select arm on these 10. Enricher must not be called; enrich-on-complete is a side check, not claim 2.",
+    "needs_enrichment": "A catalog skill (pour/stir/cut/tilt) is required. Claim 2 = enrich arm on these 10 only. Select-only should not produce a valid gap-skill plan.",
+    "ungenerable": "Nothing in the catalog can close the gap. Pass = refuse, not a spurious pick/place plan. Scored separately from plan success."
+  },
+  "cases": [
+    {
+      "id": "explicit_place",
+      "task": "place the wood cube on the shelf",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["on", "wood_cube", "shelf"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      },
+      "note": "Canonical explicit pick-place. wood_cube / shelf on tabletop."
+    },
+    {
+      "id": "implicit_place",
+      "task": "the wooden cube belongs on the shelf, not the table",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["on", "wood_cube", "shelf"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      },
+      "note": "Same goal as explicit_place; no pick/place verb."
+    },
+    {
+      "id": "explicit_place_cup",
+      "task": "place the red cup on the shelf",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "red_cup", "table"],
+          ["clear", "red_cup"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["on", "red_cup", "shelf"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      },
+      "note": "Second object (red_cup) so claim 1 is not wood_cube-only."
+    },
+    {
+      "id": "implicit_place_cup",
+      "task": "the red cup belongs on the shelf, not the table",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "red_cup", "table"],
+          ["clear", "red_cup"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["on", "red_cup", "shelf"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_pick",
+      "task": "pick the wood cube",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["holding", "wood_cube"]],
+        "plan_actions": ["pick"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_pick",
+      "task": "hand me the wooden cube",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["holding", "wood_cube"]],
+        "plan_actions": ["pick"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      },
+      "note": "Give/hand request; skill is pick, never said."
+    },
+    {
+      "id": "explicit_look",
+      "task": "look at the wood cube",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["camera-aimed-at", "wood_cube"]],
+        "plan_actions": ["look-at"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_look",
+      "task": "inspect the wooden cube more closely",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["clear", "wood_cube"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["camera-aimed-at", "wood_cube"]],
+        "plan_actions": ["look-at"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_stack",
+      "task": "stack the wood cube on the blue box",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["on", "blue_box", "table"],
+          ["clear", "wood_cube"],
+          ["clear", "blue_box"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stacked-on", "wood_cube", "blue_box"]],
+        "plan_actions": ["stack"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      },
+      "note": "Template choice is part of domain-select accuracy."
+    },
+    {
+      "id": "implicit_stack",
+      "task": "make a small tower with the wooden cube on the blue box",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_cube", "table"],
+          ["on", "blue_box", "table"],
+          ["clear", "wood_cube"],
+          ["clear", "blue_box"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stacked-on", "wood_cube", "blue_box"]],
+        "plan_actions": ["stack"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_solder",
+      "task": "solder the broken wire on the board",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true}
+      },
+      "note": "Real gap, no catalog skill. Pass = refuse, never invent."
+    },
+    {
+      "id": "implicit_repair",
+      "task": "the circuit on the board is broken, join the wires",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true}
+      },
+      "note": "Same gap as solder; skill never named."
+    },
+    {
+      "id": "explicit_levitate",
+      "task": "make the cup float in the air",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true}
+      }
+    },
+    {
+      "id": "implicit_hover",
+      "task": "I want the cube to stay in the air by itself",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true}
+      }
+    },
+    {
+      "id": "explicit_pour",
+      "task": "pour the can into the glass",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          ["on", "can", "table"],
+          ["on", "glass", "table"],
+          ["clear", "can"],
+          ["clear", "glass"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["poured", "can", "glass"]],
+        "plan_actions": ["pour"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      },
+      "note": "Keyword and LLM should both see the gap. Kitchen vessels."
+    },
+    {
+      "id": "implicit_drink",
+      "task": "get me something to drink",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          ["on", "can", "table"],
+          ["on", "glass", "table"],
+          ["clear", "can"],
+          ["clear", "glass"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["poured", "can", "glass"]],
+        "soft_golds": [
+          [["poured", "can", "glass"]],
+          [["poured", "can", "cup"]],
+          [["poured", "can", "mug"]],
+          [["poured", "mug", "glass"]],
+          [["poured", "mug", "cup"]],
+          [["poured", "can", "glass2"]],
+          [["poured", "mug", "glass2"]]
+        ],
+        "plan_actions": ["pour"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      },
+      "note": "Never says pour; no vessel named. soft_golds: any plausible drink vessel pair."
+    },
+    {
+      "id": "implicit_thirsty",
+      "task": "i am thirsty, can you help",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "pour",
+        "required_init": [
+          ["on", "can", "table"],
+          ["on", "glass", "table"],
+          ["clear", "can"],
+          ["clear", "glass"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["poured", "can", "glass"]],
+        "soft_golds": [
+          [["poured", "can", "glass"]],
+          [["poured", "can", "cup"]],
+          [["poured", "can", "mug"]],
+          [["poured", "mug", "glass"]],
+          [["poured", "mug", "cup"]],
+          [["poured", "can", "glass2"]],
+          [["poured", "mug", "glass2"]]
+        ],
+        "plan_actions": ["pour"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      },
+      "note": "Implicit NL; soft_golds accept mug/can → glass/cup. holding-only is not enough."
+    },
+    {
+      "id": "explicit_stir",
+      "task": "stir the cup",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          ["on", "cup", "table"],
+          ["clear", "cup"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stirred", "cup"]],
+        "plan_actions": ["stir"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_mix",
+      "task": "mix the contents of the cup",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          ["on", "cup", "table"],
+          ["clear", "cup"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stirred", "cup"]],
+        "plan_actions": ["stir"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      },
+      "note": "Synonym of stir; still names the motor action."
+    },
+    {
+      "id": "implicit_stir",
+      "task": "the sugar has settled at the bottom of the cup",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "stir",
+        "required_init": [
+          ["on", "cup", "table"],
+          ["clear", "cup"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stirred", "cup"]],
+        "plan_actions": ["stir"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_cut",
+      "task": "cut the tea box",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [
+          ["on", "tea_box", "table"],
+          ["clear", "tea_box"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["cut-open", "tea_box"]],
+        "plan_actions": ["cut"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_cut",
+      "task": "the tea box needs to be sliced open",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [
+          ["on", "tea_box", "table"],
+          ["clear", "tea_box"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["cut-open", "tea_box"]],
+        "plan_actions": ["cut"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_tilt",
+      "task": "tilt the can",
+      "world": "kitchen",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "tilt",
+        "required_init": [
+          ["on", "can", "table"],
+          ["clear", "can"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["tilted", "can"]],
+        "plan_actions": ["tilt"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_tilt",
+      "task": "tip the can so I can see inside",
+      "world": "kitchen",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "tilt",
+        "required_init": [
+          ["on", "can", "table"],
+          ["clear", "can"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["tilted", "can"]],
+        "plan_actions": ["tilt"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true}
+      }
+    }
+  ]
+}

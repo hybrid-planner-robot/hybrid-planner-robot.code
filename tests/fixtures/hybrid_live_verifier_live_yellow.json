@@ -1,0 +1,16 @@
+{
+  "description": "Session 16 live planner YELLOW probe (Qwen3-VL-8B). Call count==1; verdict may stay YELLOW if patch incomplete.",
+  "session": 16,
+  "live_planner_yellow": {
+    "verdict": "YELLOW",
+    "vlm_calls": 1,
+    "client_call_count": 1,
+    "last_error": null,
+    "note": "max-1 VLM call honored; unresolved YELLOW is allowed (no second call)"
+  },
+  "mock_matrix": {
+    "GREEN_vlm_calls": 0,
+    "YELLOW_vlm_calls": 1,
+    "RED_vlm_calls": 0
+  }
+}

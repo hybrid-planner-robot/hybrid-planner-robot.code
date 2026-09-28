@@ -1,0 +1,372 @@
+{
+  "name": "goal_llm_battery_v1",
+  "description": "Incremental difficulty suite to probe local goal-LLM limits (SceneState + NL → :goal). Gold facts are order-insensitive. Levels L0–L2 are mostly rule-based solvable; L3+ stress paraphrases, grounding, domains, and refusal.",
+  "levels": [
+    {
+      "id": "L0",
+      "name": "canonical",
+      "description": "Exact snake_case / template phrases the rule-based backend already handles.",
+      "cases": [
+        {
+          "id": "L0-pick",
+          "scenario": "table",
+          "command": "pick red_cup",
+          "gold": [["holding", "red_cup"]]
+        },
+        {
+          "id": "L0-place",
+          "scenario": "table",
+          "command": "place red_cup on shelf",
+          "gold": [["on", "red_cup", "shelf"]]
+        },
+        {
+          "id": "L0-look",
+          "scenario": "table",
+          "command": "look at blue_box",
+          "gold": [["camera-aimed-at", "blue_box"]]
+        },
+        {
+          "id": "L0-put",
+          "scenario": "table",
+          "command": "put blue_box on table",
+          "gold": [["on", "blue_box", "table"]]
+        }
+      ]
+    },
+    {
+      "id": "L1",
+      "name": "light_paraphrase",
+      "description": "Articles, synonyms (grasp/pick-up), still single clear predicate.",
+      "cases": [
+        {
+          "id": "L1-pick-up-the",
+          "scenario": "table",
+          "command": "pick up the red cup",
+          "gold": [["holding", "red_cup"]]
+        },
+        {
+          "id": "L1-grasp",
+          "scenario": "table",
+          "command": "grasp the blue box",
+          "gold": [["holding", "blue_box"]]
+        },
+        {
+          "id": "L1-place-the",
+          "scenario": "table",
+          "command": "place the red cup on the shelf",
+          "gold": [["on", "red_cup", "shelf"]]
+        },
+        {
+          "id": "L1-look-at-the",
+          "scenario": "table",
+          "command": "look at the blue box",
+          "gold": [["camera-aimed-at", "blue_box"]]
+        }
+      ]
+    },
+    {
+      "id": "L2",
+      "name": "natural_verbose",
+      "description": "Longer NL; still one primary goal. May break brittle regex rule-based.",
+      "cases": [
+        {
+          "id": "L2-please-pick",
+          "scenario": "table",
+          "command": "please pick up the red cup from the table",
+          "gold": [["holding", "red_cup"]],
+          "notes": "rule-based often fails on trailing 'from the table'"
+        },
+        {
+          "id": "L2-move-onto",
+          "scenario": "table",
+          "command": "move the red cup onto the shelf",
+          "gold": [["on", "red_cup", "shelf"]]
+        },
+        {
+          "id": "L2-i-want-place",
+          "scenario": "table",
+          "command": "I want you to put the blue box on the shelf",
+          "gold": [["on", "blue_box", "shelf"]]
+        },
+        {
+          "id": "L2-point-camera",
+          "scenario": "table",
+          "command": "aim the camera at the red cup",
+          "gold": [["camera-aimed-at", "red_cup"]]
+        }
+      ]
+    },
+    {
+      "id": "L3",
+      "name": "scene_grounded",
+      "description": "Must use SceneState: distractors, mid-task holding, referring expressions.",
+      "cases": [
+        {
+          "id": "L3-clutter-pick-green",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/table_clutter.json",
+          "command": "pick up the green bottle",
+          "gold": [["holding", "green_bottle"]]
+        },
+        {
+          "id": "L3-clutter-place-bowl",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/table_clutter.json",
+          "command": "put the yellow bowl on the table",
+          "gold": [["on", "yellow_bowl", "table"]]
+        },
+        {
+          "id": "L3-holding-place",
+          "scenario": "holding_fused",
+          "command": "place the red cup on the shelf",
+          "gold": [["on", "red_cup", "shelf"]],
+          "notes": "robot already holding red_cup"
+        },
+        {
+          "id": "L3-the-cup-on-table",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/table_clutter.json",
+          "command": "pick up the cup that is on the table",
+          "gold": [["holding", "red_cup"]],
+          "notes": "only red_cup is a cup on table; yellow_bowl is on shelf"
+        },
+        {
+          "id": "L3-object-on-shelf",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/table_clutter.json",
+          "command": "look at the object on the shelf",
+          "gold": [["camera-aimed-at", "yellow_bowl"]]
+        }
+      ]
+    },
+    {
+      "id": "L4",
+      "name": "domain_and_composition",
+      "description": "Stacking / containers domains; multi-fact goals; easy to invent wrong predicates.",
+      "cases": [
+        {
+          "id": "L4-stack",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/stacking_table.json",
+          "domain_template": "manipulation_stacking",
+          "command": "stack the bowl on the plate",
+          "gold": [["stacked-on", "bowl", "plate"]]
+        },
+        {
+          "id": "L4-in-drawer",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/containers_table.json",
+          "domain_template": "containers_manipulation",
+          "command": "put the red cup in the drawer",
+          "gold": [["in-container", "red_cup", "drawer"]]
+        },
+        {
+          "id": "L4-stack-rejected-base",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/stacking_table.json",
+          "domain_template": "manipulation_base",
+          "command": "stack bowl on plate",
+          "expect_fail": true,
+          "notes": "stacked-on not allowed on manipulation_base — must refuse / not invent"
+        },
+        {
+          "id": "L4-and-goal",
+          "scenario": "table",
+          "command": "place the red cup on the shelf and look at the blue box",
+          "gold": [["on", "red_cup", "shelf"], ["camera-aimed-at", "blue_box"]],
+          "notes": "multi-fact; rule-based cannot express conjunction"
+        },
+        {
+          "id": "L4-both-on-shelf",
+          "scenario": "table",
+          "command": "put both the red cup and the blue box on the shelf",
+          "gold": [["on", "red_cup", "shelf"], ["on", "blue_box", "shelf"]]
+        }
+      ]
+    },
+    {
+      "id": "L5",
+      "name": "adversarial",
+      "description": "Unknown symbols, unsupported tasks, hallucination traps. Pass = refuse (ok=false), not invent.",
+      "cases": [
+        {
+          "id": "L5-unknown-object",
+          "scenario": "table",
+          "command": "pick up the purple mug",
+          "expect_fail": true
+        },
+        {
+          "id": "L5-sandwich",
+          "scenario": "table",
+          "command": "make me a sandwich",
+          "expect_fail": true
+        },
+        {
+          "id": "L5-invent-predicate",
+          "scenario": "table",
+          "command": "teleport the red cup to the shelf",
+          "soft_golds": [[["on", "red_cup", "shelf"]]],
+          "notes": "ideal: map to on(red_cup,shelf); fail if invents teleport / unknown pred"
+        },
+        {
+          "id": "L5-wrong-location",
+          "scenario": "table",
+          "command": "place red_cup on ceiling",
+          "expect_fail": true
+        },
+        {
+          "id": "L5-empty",
+          "scenario": "table",
+          "command": "do something useful",
+          "expect_fail": true
+        }
+      ]
+    },
+    {
+      "id": "L6",
+      "name": "office_parity",
+      "description": "Original OFFICE_SUITE commands (eval_enrichment.py / run_eval_suite.sh) on a mock office desk. Golds mirror what legacy infer_goal_state would emit for a typical successful VLM plan (place→on, pick-only→holding, stack→stacked-on, drop-in→in-container). Enrichment/novel tasks (B/F pour-cut-write…) expect refusal under hybrid MVP — original path needed VLM domain_additions.",
+      "cases": [
+        {
+          "id": "L6-A-pen-keyboard",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "pick the pen and place it next to the keyboard",
+          "gold": [["on", "pen", "keyboard"]],
+          "soft_golds": [[["on", "pen", "desk"]], [["on", "pen", "keyboard"]]],
+          "notes": "OFFICE_SUITE group A; 'next to' ≈ on(keyboard|desk)"
+        },
+        {
+          "id": "L6-A-phone-notebook",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "put the smartphone on the notebook",
+          "gold": [["on", "smartphone", "notebook"]]
+        },
+        {
+          "id": "L6-A-mouse-keyboard",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "move the mouse to the other side of the keyboard",
+          "gold": [["on", "mouse", "keyboard"]],
+          "soft_golds": [[["on", "mouse", "keyboard"]], [["on", "mouse", "desk"]]]
+        },
+        {
+          "id": "L6-B-pour",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "pick the bottle and pour the water in the cup",
+          "expect_fail": true,
+          "notes": "enrichment (pour); legacy goal from VLM new_actions effect"
+        },
+        {
+          "id": "L6-B-cut",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "cut the paper on the desk with the scissors",
+          "expect_fail": true,
+          "notes": "enrichment (cut)"
+        },
+        {
+          "id": "L6-B-write",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "write on the notebook with the pen",
+          "expect_fail": true,
+          "notes": "enrichment (write)"
+        },
+        {
+          "id": "L6-B-flip",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "flip the notebook upside down on the desk",
+          "expect_fail": true,
+          "notes": "enrichment (flip)"
+        },
+        {
+          "id": "L6-B-scan",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "scan the barcode on the bottle with the smartphone",
+          "expect_fail": true,
+          "notes": "enrichment (scan)"
+        },
+        {
+          "id": "L6-C-tilt",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "tilt the bottle to check if it has water",
+          "expect_fail": true,
+          "notes": "enrichment (tilt)"
+        },
+        {
+          "id": "L6-C-pour",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "pour from the bottle into the cup",
+          "expect_fail": true,
+          "notes": "enrichment (pour)"
+        },
+        {
+          "id": "L6-C-cup-keyboard",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "pick up the cup and place it on the keyboard",
+          "gold": [["on", "cup", "keyboard"]]
+        },
+        {
+          "id": "L6-C-pen-into-cup",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "domain_template": "containers_manipulation",
+          "command": "pick up the pen and drop it into the cup",
+          "gold": [["in-container", "pen", "cup"]],
+          "soft_golds": [[["in-container", "pen", "cup"]], [["on", "pen", "cup"]]]
+        },
+        {
+          "id": "L6-D-pen-mouse-notebook",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "put the pen and the mouse on the notebook",
+          "gold": [["on", "pen", "notebook"], ["on", "mouse", "notebook"]]
+        },
+        {
+          "id": "L6-D-clear-keyboard",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "clear the keyboard: move the mouse and the smartphone away from it",
+          "gold": [["on", "mouse", "desk"], ["on", "smartphone", "desk"]],
+          "soft_golds": [
+            [["on", "mouse", "desk"], ["on", "smartphone", "desk"]],
+            [["on", "smartphone", "desk"], ["on", "mouse", "desk"]]
+          ],
+          "notes": "underspecified destinations; desk is the safe legacy-like landing"
+        },
+        {
+          "id": "L6-D-multi-step",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "pick the pen, place it on the notebook, then put the bottle on the desk",
+          "gold": [["on", "pen", "notebook"], ["on", "bottle", "desk"]]
+        },
+        {
+          "id": "L6-E-stack",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "domain_template": "manipulation_stacking",
+          "command": "stack the notebook on top of the laptop",
+          "gold": [["stacked-on", "notebook", "laptop"]],
+          "soft_golds": [[["stacked-on", "notebook", "laptop"]], [["on", "notebook", "laptop"]]]
+        },
+        {
+          "id": "L6-E-laptop-inside",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "domain_template": "containers_manipulation",
+          "command": "open the laptop and place the smartphone inside it",
+          "gold": [["in-container", "smartphone", "laptop"]],
+          "soft_golds": [[["in-container", "smartphone", "laptop"]], [["on", "smartphone", "laptop"]]],
+          "notes": "open may be ignored; goal ≈ smartphone in/on laptop"
+        },
+        {
+          "id": "L6-F-hand-scissors",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "hand me the scissors",
+          "gold": [["holding", "scissors"]],
+          "soft_golds": [[["holding", "scissors"]]],
+          "notes": "legacy often pick-only → holding; novel phrasing"
+        },
+        {
+          "id": "L6-F-phone-call",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "make a phone call with the smartphone",
+          "expect_fail": true,
+          "notes": "novel / non-manipulation"
+        },
+        {
+          "id": "L6-F-everything-order",
+          "scenario": "tests/fixtures/goal_llm_eval/scenes/office_desk.json",
+          "command": "put everything on the desk in order",
+          "expect_fail": true,
+          "notes": "underspecified; refuse rather than invent"
+        }
+      ]
+    }
+  ]
+}

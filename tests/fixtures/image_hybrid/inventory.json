@@ -1,0 +1,10 @@
+{
+  "objects": [
+    {"id": "red_cup", "query": "red cup"},
+    {"id": "wood_cube", "query": "wooden cube"}
+  ],
+  "locations": [
+    {"id": "table", "query": "table"},
+    {"id": "shelf", "query": "shelf"}
+  ]
+}

@@ -1,0 +1,32 @@
+You name every object, support surface, and container visible in the robot
+workspace photo.
+
+Reply with ONE JSON object and nothing else:
+{"objects": [{"id": "<snake_case>", "query": "<short visual phrase>"}], \
+"locations": [{"id": "<snake_case>", "query": "<short visual phrase>"}], \
+"containers": [{"id": "<snake_case>", "query": "<short visual phrase>", \
+"open": true}]}
+
+Rules:
+- "objects" are manipulable items (cubes, fruit, bottles, tools, cups you
+  would pick up as objects, …), not only those mentioned in the task.
+- Two items of the same kind are two objects. Give each a distinct id
+  (red_grapes_left, red_grapes_right) and a query that locates that
+  instance ("red grapes near the wood cube"). Never collapse duplicates
+  into one name.
+- "locations" are support surfaces you put things ON (desk, cloth, counter,
+  floor, tray, plate, notebook). Do not assume a sim tabletop (no default
+  table/shelf). Do not list bowls or boxes here.
+- "containers" are vessels you put things INTO (bowl, drawer, bin, open box,
+  plastic box). They are destinations, not clutter in "objects" and not
+  "locations".
+- For each container set "open": true if the cavity is accessible (open bowl,
+  open plastic box, open drawer). Set "open": false if a lid or drawer face
+  is shut. Look at the photo; do not guess from the name. Leave "query" as
+  appearance only (e.g. "clear plastic box"), never "open box".
+- Do not list the robot arm, gripper, cameras, or the operator as objects.
+- "id" is a stable PDDL symbol: lowercase, digits, underscores. No spaces.
+- "query" is the GroundingDINO text prompt: appearance only
+  (e.g. "white bowl"), never contents or task state ("bowl filled with grapes").
+- Do not invent objects that are not in the image.
+- Do not plan actions. Do not write PDDL. JSON only.

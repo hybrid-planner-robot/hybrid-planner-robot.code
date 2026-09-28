@@ -1,0 +1,22 @@
+{
+  "name": "golden_v4",
+  "note": "V4 mock-init traces used for the paper. Automatic pass/fail labels are not included: evaluation was done by hand from command + family + extracted plan.",
+  "scene_source": "oracle",
+  "perception_only": false,
+  "mock_init": true,
+  "suites": [
+    "tests/fixtures/planning_eval/suite_v4_tabletop_mock.json",
+    "tests/fixtures/planning_eval/suite_v4_kitchen_mock.json",
+    "tests/fixtures/planning_eval/suite_v4_workshop_mock.json"
+  ],
+  "file": "plans.csv",
+  "columns": ["model", "arm", "setting", "family", "command", "plan"],
+  "n_rows": 1280,
+  "models": [
+    {"id": "qwen7b", "model": "Qwen2.5-7B", "profile": "local-qwen7b"},
+    {"id": "qwen14b", "model": "Qwen2.5-14B", "profile": "local-qwen14b"},
+    {"id": "qwen36", "model": "Qwen3.6", "profile": "lab-qwen36"},
+    {"id": "glm53", "model": "GLM-5.3", "profile": "lab-glm53"}
+  ],
+  "arms": ["llm_plan", "llm_pddl", "enrich", "r1"]
+}

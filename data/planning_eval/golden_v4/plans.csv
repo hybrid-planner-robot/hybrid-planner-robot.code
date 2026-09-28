@@ -1,0 +1,1281 @@
+model,arm,setting,family,command,plan
+Qwen2.5-7B,llm_plan,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(navigate-to shelf) → (look-at wood_cube) → (pick wood_cube) → (place wood_cube shelf) → (navigate-to table) → (look-at blue_box) → (pick blue_box) → (stack blue_box wood_cube)
+Qwen2.5-7B,llm_plan,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(navigate-to shelf) → (look-at wood_cube) → (pick wood_cube) → (place wood_cube shelf) → (navigate-to table) → (look-at blue_box) → (pick blue_box) → (place blue_box wood_cube)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,pick the wood cube,(pick wood_cube) → (place wood_cube table)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,place the wood cube on the shelf,(navigate-to shelf) → (place wood_cube shelf)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,place the red cup on the shelf,(navigate-to shelf) → (pick red_cup) → (place red_cup shelf)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube) → (stack wood_cube blue_box)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube) → (look-at wood_cube)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,inspect the wood cube more closely,(look-at wood_cube)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(navigate-to shelf) → (pick wood_cube) → (place wood_cube shelf)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(navigate-to shelf) → (pick red_cup) → (place red_cup shelf)
+Qwen2.5-7B,llm_plan,tabletop,template_complete,make a small tower with the wood cube on the blue box,(pick wood_cube) → (place wood_cube blue_box) → (stack wood_cube blue_box)
+Qwen2.5-7B,llm_plan,tabletop,underspecified,pick the wood cube and give it to me,
+Qwen2.5-7B,llm_plan,tabletop,underspecified,place something on the shelf for me,(navigate-to shelf) → (pick red_cup) → (place red_cup shelf)
+Qwen2.5-7B,llm_plan,tabletop,underspecified,hand me the wood cube,(pick wood_cube) → (place wood_cube table)
+Qwen2.5-7B,llm_plan,tabletop,underspecified,I need something from the table,(pick wood_cube) → (navigate-to table)
+Qwen2.5-7B,llm_plan,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_plan,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_plan,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_plan,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,llm_pddl,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,
+Qwen2.5-7B,llm_pddl,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,look at the wood cube,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,pick the wood cube,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,place the wood cube on the shelf,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,place the red cup on the shelf,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,stack the wood cube on the blue box,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-7B,llm_pddl,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-7B,llm_pddl,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen2.5-7B,llm_pddl,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-7B,llm_pddl,tabletop,underspecified,hand me the wood cube,(pick wood_cube table)
+Qwen2.5-7B,llm_pddl,tabletop,underspecified,I need something from the table,
+Qwen2.5-7B,llm_pddl,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_pddl,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_pddl,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_pddl,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,enrich,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-7B,enrich,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-7B,enrich,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-7B,enrich,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen2.5-7B,enrich,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-7B,enrich,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-7B,enrich,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen2.5-7B,enrich,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen2.5-7B,enrich,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-7B,enrich,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-7B,enrich,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-7B,enrich,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-7B,enrich,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen2.5-7B,enrich,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-7B,enrich,tabletop,underspecified,hand me the wood cube,
+Qwen2.5-7B,enrich,tabletop,underspecified,I need something from the table,
+Qwen2.5-7B,enrich,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,enrich,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-7B,enrich,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,enrich,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,r1,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-7B,r1,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-7B,r1,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-7B,r1,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen2.5-7B,r1,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-7B,r1,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-7B,r1,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen2.5-7B,r1,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen2.5-7B,r1,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-7B,r1,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-7B,r1,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-7B,r1,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-7B,r1,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen2.5-7B,r1,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-7B,r1,tabletop,underspecified,hand me the wood cube,
+Qwen2.5-7B,r1,tabletop,underspecified,I need something from the table,
+Qwen2.5-7B,r1,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,r1,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-7B,r1,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,r1,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,llm_plan,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(navigate-to tray) → (place mug tray) → (navigate-to table) → (pick mug) → (stack tea_box mug)
+Qwen2.5-7B,llm_plan,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(navigate-to tray) → (place mug tray) → (navigate-to tea_box) → (place tea_box tray mug)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,mix the contents of the cup,(pick cup) → (pour cup table) → (tilt cup)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,pour the can into the glass,(pick can) → (pour can glass) → (place can table)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,stir the cup,(pick cup) → (stir cup) → (place cup table)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,tilt the can,(pick can) → (tilt can) → (place can table)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,the can should be tilted,(tilt can) → (look-at can)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,the tea box needs to be sliced open,(pick tea_box) → (cut tea_box)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,the glass should be filled from the can,(pick can) → (pour can glass) → (place can table)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,the mug should be filled from the can,(pick can) → (pour can mug) → (place can table)
+Qwen2.5-7B,llm_plan,kitchen,needs_enrichment,the contents of the cup should be mixed,(pick cup) → (tilt cup) → (place cup table)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,look at the mug,
+Qwen2.5-7B,llm_plan,kitchen,template_complete,pick the mug,
+Qwen2.5-7B,llm_plan,kitchen,template_complete,place the mug on the tray,(navigate-to tray) → (place mug tray)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,place the cup on the tray,(navigate-to tray) → (place cup tray)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,stack the tea box on the plate,(pick tea_box) → (place tea_box plate)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,the mug should be in the gripper,(pick mug) → (look-at mug)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,inspect the mug more closely,(look-at mug)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,"the mug belongs on the tray, not the table",(navigate-to tray) → (look-at mug) → (pick mug) → (place mug tray)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,"the cup belongs on the tray, not the table",(navigate-to tray) → (pick cup) → (place cup tray)
+Qwen2.5-7B,llm_plan,kitchen,template_complete,put the tea box on top of the plate,(navigate-to plate) → (look-at tea_box) → (pick tea_box) → (place tea_box plate)
+Qwen2.5-7B,llm_plan,kitchen,underspecified,pick the glass and give it to me,(pick glass) → (place glass tray)
+Qwen2.5-7B,llm_plan,kitchen,underspecified,pour me something to drink,(pick mug) → (pour mug tray) → (place mug table)
+Qwen2.5-7B,llm_plan,kitchen,underspecified,hand me the glass,(pick glass) → (place glass tray)
+Qwen2.5-7B,llm_plan,kitchen,underspecified,"i am thirsty, can you help",(pick mug) → (navigate-to table) → (place mug table)
+Qwen2.5-7B,llm_plan,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_plan,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_plan,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_plan,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,llm_pddl,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,
+Qwen2.5-7B,llm_pddl,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,pour the can into the glass,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,tilt the can,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,the can should be tilted,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen2.5-7B,llm_pddl,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,look at the mug,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,place the mug on the tray,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,place the cup on the tray,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,stack the tea box on the plate,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,the mug should be in the gripper,(pick mug table)
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,"the cup belongs on the tray, not the table",
+Qwen2.5-7B,llm_pddl,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-7B,llm_pddl,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen2.5-7B,llm_pddl,kitchen,underspecified,pour me something to drink,
+Qwen2.5-7B,llm_pddl,kitchen,underspecified,hand me the glass,(pick glass table)
+Qwen2.5-7B,llm_pddl,kitchen,underspecified,"i am thirsty, can you help",
+Qwen2.5-7B,llm_pddl,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_pddl,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_pddl,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_pddl,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,enrich,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-7B,enrich,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,mix the contents of the cup,(pick cup table) → (pour cup mug)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,pour the can into the glass,(look-at can) → (pick can table) → (pour can glass)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,the glass should be filled from the can,(look-at can) → (pick can table) → (pour can glass)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug)
+Qwen2.5-7B,enrich,kitchen,needs_enrichment,the contents of the cup should be mixed,(pick cup table) → (pour cup cutting_board)
+Qwen2.5-7B,enrich,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen2.5-7B,enrich,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-7B,enrich,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen2.5-7B,enrich,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen2.5-7B,enrich,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen2.5-7B,enrich,kitchen,template_complete,the mug should be in the gripper,
+Qwen2.5-7B,enrich,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-7B,enrich,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-7B,enrich,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen2.5-7B,enrich,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-7B,enrich,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen2.5-7B,enrich,kitchen,underspecified,pour me something to drink,(look-at tea_box) → (pick tea_box table) → (pour tea_box glass)
+Qwen2.5-7B,enrich,kitchen,underspecified,hand me the glass,
+Qwen2.5-7B,enrich,kitchen,underspecified,"i am thirsty, can you help",(look-at mug) → (pick mug table) → (pour mug glass)
+Qwen2.5-7B,enrich,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-7B,enrich,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-7B,enrich,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,enrich,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,r1,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-7B,r1,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",
+Qwen2.5-7B,r1,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,pour the can into the glass,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+Qwen2.5-7B,r1,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+Qwen2.5-7B,r1,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen2.5-7B,r1,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen2.5-7B,r1,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen2.5-7B,r1,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-7B,r1,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen2.5-7B,r1,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen2.5-7B,r1,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen2.5-7B,r1,kitchen,template_complete,the mug should be in the gripper,
+Qwen2.5-7B,r1,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-7B,r1,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-7B,r1,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen2.5-7B,r1,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-7B,r1,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen2.5-7B,r1,kitchen,underspecified,pour me something to drink,
+Qwen2.5-7B,r1,kitchen,underspecified,hand me the glass,
+Qwen2.5-7B,r1,kitchen,underspecified,"i am thirsty, can you help",
+Qwen2.5-7B,r1,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-7B,r1,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-7B,r1,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,r1,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,llm_plan,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(navigate-to metal_tray) → (place wood_block metal_tray) → (navigate-to table) → (look-at wood_block2) → (pick wood_block2) → (navigate-to wood_block) → (stack wood_block2 wood_block)
+Qwen2.5-7B,llm_plan,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(navigate-to metal_tray) → (place wood_block metal_tray) → (navigate-to table) → (look-at wood_block2) → (pick wood_block2) → (navigate-to metal_tray) → (place wood_block2 metal_tray)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,clamp the wood board,(pick wood_board) → (clamp wood_board)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,cut the wood board,(pick wood_board) → (cut wood_board) → (place wood_board table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,drill a hole in the metal plate,(pick power_drill table) → (drill metal_plate) → (place power_drill table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,paint the wood board,(pick paint_brush table) → (pick paint_can table) → (paint paint_brush wood_board) → (place paint_brush table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,slice the wood board,(pick wood_board) → (cut wood_board)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,the wood board should be secured in the clamp,(pick wood_board) → (clamp wood_board)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,the wood board should be sliced,(pick wood_board) → (cut wood_board) → (place wood_board table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,the metal plate should have a hole in it,(pick metal_plate) → (drill metal_plate) → (place metal_plate table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,the wood board should be painted,(pick wood_board) → (paint paint_can wood_board) → (place wood_board table)
+Qwen2.5-7B,llm_plan,workshop,needs_enrichment,the metal plate should be painted,(pick metal_plate) → (paint metal_plate paint_can) → (place metal_plate metal_tray)
+Qwen2.5-7B,llm_plan,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-7B,llm_plan,workshop,template_complete,pick the screwdriver,(pick screwdriver) → (clamp screwdriver)
+Qwen2.5-7B,llm_plan,workshop,template_complete,place the hammer on the metal tray,(navigate-to metal_tray) → (place hammer metal_tray)
+Qwen2.5-7B,llm_plan,workshop,template_complete,place the screwdriver on the metal tray,(navigate-to metal_tray) → (look-at screwdriver) → (pick screwdriver) → (place screwdriver metal_tray)
+Qwen2.5-7B,llm_plan,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+Qwen2.5-7B,llm_plan,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver) → (clamp screwdriver)
+Qwen2.5-7B,llm_plan,workshop,template_complete,inspect the screwdriver more closely,(look-at screwdriver)
+Qwen2.5-7B,llm_plan,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(navigate-to metal_tray) → (look-at hammer) → (pick hammer) → (place hammer metal_tray)
+Qwen2.5-7B,llm_plan,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(navigate-to metal_tray) → (pick screwdriver) → (place screwdriver metal_tray)
+Qwen2.5-7B,llm_plan,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block) → (place wood_block wood_block2)
+Qwen2.5-7B,llm_plan,workshop,underspecified,pick the hammer and give it to me,(pick hammer) → (place hammer metal_tray)
+Qwen2.5-7B,llm_plan,workshop,underspecified,get me a tool to work with,
+Qwen2.5-7B,llm_plan,workshop,underspecified,hand me the hammer,(pick hammer) → (place hammer metal_tray)
+Qwen2.5-7B,llm_plan,workshop,underspecified,"I need to work on this, can you help",(pick metal_plate)
+Qwen2.5-7B,llm_plan,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_plan,workshop,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_plan,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_plan,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,llm_pddl,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,
+Qwen2.5-7B,llm_pddl,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,cut the wood board,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,paint the wood board,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,slice the wood board,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,the wood board should be sliced,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,the wood board should be painted,
+Qwen2.5-7B,llm_pddl,workshop,needs_enrichment,the metal plate should be painted,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,look at the screwdriver,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-7B,llm_pddl,workshop,template_complete,place the hammer on the metal tray,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,place the screwdriver on the metal tray,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,stack the wood block on the second wood block,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver table)
+Qwen2.5-7B,llm_pddl,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-7B,llm_pddl,workshop,template_complete,"the hammer belongs on the metal tray, not the table",
+Qwen2.5-7B,llm_pddl,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-7B,llm_pddl,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-7B,llm_pddl,workshop,underspecified,pick the hammer and give it to me,
+Qwen2.5-7B,llm_pddl,workshop,underspecified,get me a tool to work with,
+Qwen2.5-7B,llm_pddl,workshop,underspecified,hand me the hammer,
+Qwen2.5-7B,llm_pddl,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-7B,llm_pddl,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,llm_pddl,workshop,ungenerable,solder the broken wire,
+Qwen2.5-7B,llm_pddl,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,llm_pddl,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,enrich,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen2.5-7B,enrich,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-7B,enrich,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-7B,enrich,workshop,needs_enrichment,cut the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+Qwen2.5-7B,enrich,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen2.5-7B,enrich,workshop,needs_enrichment,paint the wood board,(pick wood_board table) → (paint wood_board wood_board)
+Qwen2.5-7B,enrich,workshop,needs_enrichment,slice the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+Qwen2.5-7B,enrich,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-7B,enrich,workshop,needs_enrichment,the wood board should be sliced,(look-at scissors) → (pick wood_board table) → (cut wood_board scissors)
+Qwen2.5-7B,enrich,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen2.5-7B,enrich,workshop,needs_enrichment,the wood board should be painted,(pick wood_board table) → (paint wood_board wood_board)
+Qwen2.5-7B,enrich,workshop,needs_enrichment,the metal plate should be painted,(pick metal_plate table) → (paint metal_plate metal_plate)
+Qwen2.5-7B,enrich,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-7B,enrich,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-7B,enrich,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-7B,enrich,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-7B,enrich,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen2.5-7B,enrich,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen2.5-7B,enrich,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-7B,enrich,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-7B,enrich,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-7B,enrich,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-7B,enrich,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen2.5-7B,enrich,workshop,underspecified,get me a tool to work with,
+Qwen2.5-7B,enrich,workshop,underspecified,hand me the hammer,
+Qwen2.5-7B,enrich,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-7B,enrich,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,enrich,workshop,ungenerable,solder the broken wire,
+Qwen2.5-7B,enrich,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,enrich,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-7B,r1,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen2.5-7B,r1,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-7B,r1,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-7B,r1,workshop,needs_enrichment,cut the wood board,
+Qwen2.5-7B,r1,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen2.5-7B,r1,workshop,needs_enrichment,paint the wood board,
+Qwen2.5-7B,r1,workshop,needs_enrichment,slice the wood board,
+Qwen2.5-7B,r1,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-7B,r1,workshop,needs_enrichment,the wood board should be sliced,
+Qwen2.5-7B,r1,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen2.5-7B,r1,workshop,needs_enrichment,the wood board should be painted,
+Qwen2.5-7B,r1,workshop,needs_enrichment,the metal plate should be painted,
+Qwen2.5-7B,r1,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-7B,r1,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-7B,r1,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-7B,r1,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-7B,r1,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen2.5-7B,r1,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen2.5-7B,r1,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-7B,r1,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-7B,r1,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-7B,r1,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-7B,r1,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen2.5-7B,r1,workshop,underspecified,get me a tool to work with,
+Qwen2.5-7B,r1,workshop,underspecified,hand me the hammer,
+Qwen2.5-7B,r1,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-7B,r1,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-7B,r1,workshop,ungenerable,solder the broken wire,
+Qwen2.5-7B,r1,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-7B,r1,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_plan,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(navigate-to table) → (pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf) → (navigate-to table) → (pick blue_box) → (navigate-to shelf) → (stack blue_box wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(navigate-to table) → (pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf) → (navigate-to table) → (pick blue_box) → (navigate-to shelf) → (stack blue_box wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,pick the wood cube,(pick wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,place the wood cube on the shelf,(navigate-to table) → (pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,place the red cup on the shelf,(navigate-to table) → (pick red_cup) → (navigate-to shelf) → (place red_cup shelf)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,stack the wood cube on the blue box,(navigate-to table) → (pick wood_cube) → (navigate-to table) → (unstack wood_cube blue_box) → (stack wood_cube blue_box)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,inspect the wood cube more closely,(navigate-to table) → (look-at wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(navigate-to table) → (pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(navigate-to table) → (pick red_cup) → (navigate-to shelf) → (place red_cup shelf)
+Qwen2.5-14B,llm_plan,tabletop,template_complete,make a small tower with the wood cube on the blue box,(navigate-to table) → (pick wood_cube) → (navigate-to table) → (unstack blue_box table) → (stack wood_cube blue_box)
+Qwen2.5-14B,llm_plan,tabletop,underspecified,pick the wood cube and give it to me,(navigate-to table) → (pick wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,underspecified,place something on the shelf for me,(navigate-to table) → (pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf)
+Qwen2.5-14B,llm_plan,tabletop,underspecified,hand me the wood cube,(navigate-to table) → (pick wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,underspecified,I need something from the table,(navigate-to table) → (pick wood_cube)
+Qwen2.5-14B,llm_plan,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_plan,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_plan,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_plan,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_pddl,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,
+Qwen2.5-14B,llm_pddl,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,look at the wood cube,
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,stack the wood cube on the blue box,
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube table)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,llm_pddl,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-14B,llm_pddl,tabletop,underspecified,pick the wood cube and give it to me,
+Qwen2.5-14B,llm_pddl,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-14B,llm_pddl,tabletop,underspecified,hand me the wood cube,(pick wood_cube table)
+Qwen2.5-14B,llm_pddl,tabletop,underspecified,I need something from the table,
+Qwen2.5-14B,llm_pddl,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_pddl,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_pddl,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_pddl,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,enrich,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-14B,enrich,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-14B,enrich,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-14B,enrich,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen2.5-14B,enrich,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,enrich,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,enrich,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen2.5-14B,enrich,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen2.5-14B,enrich,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-14B,enrich,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,enrich,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,enrich,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-14B,enrich,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen2.5-14B,enrich,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-14B,enrich,tabletop,underspecified,hand me the wood cube,
+Qwen2.5-14B,enrich,tabletop,underspecified,I need something from the table,
+Qwen2.5-14B,enrich,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,enrich,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-14B,enrich,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,enrich,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,r1,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-14B,r1,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen2.5-14B,r1,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen2.5-14B,r1,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen2.5-14B,r1,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,r1,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,r1,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen2.5-14B,r1,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen2.5-14B,r1,tabletop,template_complete,inspect the wood cube more closely,
+Qwen2.5-14B,r1,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen2.5-14B,r1,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen2.5-14B,r1,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen2.5-14B,r1,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen2.5-14B,r1,tabletop,underspecified,place something on the shelf for me,
+Qwen2.5-14B,r1,tabletop,underspecified,hand me the wood cube,
+Qwen2.5-14B,r1,tabletop,underspecified,I need something from the table,
+Qwen2.5-14B,r1,tabletop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,r1,tabletop,ungenerable,solder the broken wire,
+Qwen2.5-14B,r1,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,r1,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_plan,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(navigate-to table) → (pick mug) → (navigate-to tray) → (place mug tray) → (navigate-to table) → (pick tea_box) → (stack tea_box mug)
+Qwen2.5-14B,llm_plan,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(navigate-to table) → (pick mug) → (navigate-to tray) → (place mug tray) → (navigate-to table) → (pick tea_box) → (navigate-to tray) → (place tea_box mug)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,cut the tea box,(pick tea_box) → (cut tea_box) → (place tea_box table)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,mix the contents of the cup,(pick cup) → (stir cup) → (place cup table)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,pour the can into the glass,(pick can) → (pour can glass)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,stir the cup,(pick cup) → (stir cup) → (place cup table)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,tilt the can,(pick can) → (tilt can) → (place can table)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,the can should be tilted,(pick can) → (tilt can) → (place can table)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,the tea box needs to be sliced open,(pick tea_box) → (cut tea_box)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,the glass should be filled from the can,(pick can) → (pour can glass)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,the mug should be filled from the can,(pick can) → (pour can mug)
+Qwen2.5-14B,llm_plan,kitchen,needs_enrichment,the contents of the cup should be mixed,(pick cup) → (stir cup) → (place cup table)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,pick the mug,(pick mug)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,place the mug on the tray,(navigate-to table) → (pick mug) → (navigate-to tray) → (place mug tray)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,place the cup on the tray,(navigate-to table) → (pick cup) → (navigate-to tray) → (place cup tray)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,stack the tea box on the plate,(pick tea_box) → (stack tea_box plate)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,the mug should be in the gripper,(pick mug)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,inspect the mug more closely,(pick mug) → (look-at mug) → (place mug table)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,"the mug belongs on the tray, not the table",(navigate-to table) → (pick mug) → (navigate-to tray) → (place mug tray)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,"the cup belongs on the tray, not the table",(navigate-to table) → (pick cup) → (navigate-to tray) → (place cup tray)
+Qwen2.5-14B,llm_plan,kitchen,template_complete,put the tea box on top of the plate,(pick tea_box) → (place tea_box plate)
+Qwen2.5-14B,llm_plan,kitchen,underspecified,pick the glass and give it to me,(navigate-to table) → (pick glass)
+Qwen2.5-14B,llm_plan,kitchen,underspecified,pour me something to drink,(pick mug) → (pour mug glass) → (place mug table)
+Qwen2.5-14B,llm_plan,kitchen,underspecified,hand me the glass,(navigate-to table) → (pick glass) → (navigate-to tray) → (place glass tray)
+Qwen2.5-14B,llm_plan,kitchen,underspecified,"i am thirsty, can you help",(pick cup) → (place cup tray)
+Qwen2.5-14B,llm_plan,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_plan,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_plan,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_plan,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_pddl,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,
+Qwen2.5-14B,llm_pddl,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,pour the can into the glass,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,tilt the can,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,the can should be tilted,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen2.5-14B,llm_pddl,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,look at the mug,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,place the mug on the tray,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,place the cup on the tray,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,stack the tea box on the plate,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,the mug should be in the gripper,(pick mug table)
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen2.5-14B,llm_pddl,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-14B,llm_pddl,kitchen,underspecified,pick the glass and give it to me,
+Qwen2.5-14B,llm_pddl,kitchen,underspecified,pour me something to drink,
+Qwen2.5-14B,llm_pddl,kitchen,underspecified,hand me the glass,(pick glass table)
+Qwen2.5-14B,llm_pddl,kitchen,underspecified,"i am thirsty, can you help",(pick mug table) → (place mug tray)
+Qwen2.5-14B,llm_pddl,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_pddl,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_pddl,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_pddl,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,enrich,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-14B,enrich,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,cut the tea box,
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,pour the can into the glass,(look-at can) → (pick can table) → (pour can glass)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,the glass should be filled from the can,(look-at can) → (pick can table) → (pour can glass)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug)
+Qwen2.5-14B,enrich,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen2.5-14B,enrich,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen2.5-14B,enrich,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-14B,enrich,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen2.5-14B,enrich,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen2.5-14B,enrich,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen2.5-14B,enrich,kitchen,template_complete,the mug should be in the gripper,
+Qwen2.5-14B,enrich,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-14B,enrich,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-14B,enrich,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen2.5-14B,enrich,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-14B,enrich,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen2.5-14B,enrich,kitchen,underspecified,pour me something to drink,(look-at glass) → (pick glass table) → (pour glass cup)
+Qwen2.5-14B,enrich,kitchen,underspecified,hand me the glass,
+Qwen2.5-14B,enrich,kitchen,underspecified,"i am thirsty, can you help",(look-at glass) → (pick glass table) → (pour glass mug)
+Qwen2.5-14B,enrich,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-14B,enrich,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-14B,enrich,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,enrich,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,r1,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-14B,r1,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen2.5-14B,r1,kitchen,needs_enrichment,cut the tea box,(look-at knife) → (pick knife table) → (cut tea_box knife)
+Qwen2.5-14B,r1,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,pour the can into the glass,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,stir the cup,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,tilt the can,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,the can should be tilted,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,the tea box needs to be sliced open,(look-at knife) → (pick knife table) → (cut tea_box knife)
+Qwen2.5-14B,r1,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen2.5-14B,r1,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen2.5-14B,r1,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen2.5-14B,r1,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen2.5-14B,r1,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen2.5-14B,r1,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen2.5-14B,r1,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen2.5-14B,r1,kitchen,template_complete,the mug should be in the gripper,
+Qwen2.5-14B,r1,kitchen,template_complete,inspect the mug more closely,
+Qwen2.5-14B,r1,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen2.5-14B,r1,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen2.5-14B,r1,kitchen,template_complete,put the tea box on top of the plate,
+Qwen2.5-14B,r1,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen2.5-14B,r1,kitchen,underspecified,pour me something to drink,
+Qwen2.5-14B,r1,kitchen,underspecified,hand me the glass,
+Qwen2.5-14B,r1,kitchen,underspecified,"i am thirsty, can you help",
+Qwen2.5-14B,r1,kitchen,ungenerable,make the cup float in the air,
+Qwen2.5-14B,r1,kitchen,ungenerable,solder the broken wire,
+Qwen2.5-14B,r1,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,r1,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_plan,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(navigate-to table) → (pick wood_block) → (navigate-to metal_tray) → (place wood_block metal_tray) → (navigate-to table) → (pick wood_block2) → (stack wood_block2 wood_block)
+Qwen2.5-14B,llm_plan,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block) → (place wood_block metal_tray) → (pick wood_block2) → (stack wood_block2 wood_block)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,clamp the wood board,(pick wood_board) → (clamp wood_board)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,cut the wood board,(pick wood_board) → (cut wood_board) → (place wood_board table)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,drill a hole in the metal plate,(pick metal_plate) → (drill metal_plate) → (place metal_plate table)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,paint the wood board,(pick wood_board) → (navigate-to table) → (paint paint_can wood_board) → (place wood_board table)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,slice the wood board,(pick wood_board) → (cut wood_board) → (place wood_board metal_tray)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,the wood board should be secured in the clamp,(pick wood_board) → (clamp wood_board)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,the wood board should be sliced,(pick wood_board) → (cut wood_board) → (place wood_board metal_tray)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,the metal plate should have a hole in it,(pick metal_plate) → (drill metal_plate) → (place metal_plate table)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,the wood board should be painted,(navigate-to table) → (pick wood_board) → (navigate-to table) → (paint paint_can wood_board) → (place wood_board table)
+Qwen2.5-14B,llm_plan,workshop,needs_enrichment,the metal plate should be painted,(navigate-to table) → (pick metal_plate) → (navigate-to table) → (paint paint_can metal_plate) → (place metal_plate table)
+Qwen2.5-14B,llm_plan,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-14B,llm_plan,workshop,template_complete,pick the screwdriver,(navigate-to table) → (pick screwdriver)
+Qwen2.5-14B,llm_plan,workshop,template_complete,place the hammer on the metal tray,(pick hammer) → (place hammer metal_tray)
+Qwen2.5-14B,llm_plan,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver) → (place screwdriver metal_tray)
+Qwen2.5-14B,llm_plan,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+Qwen2.5-14B,llm_plan,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver)
+Qwen2.5-14B,llm_plan,workshop,template_complete,inspect the screwdriver more closely,(look-at screwdriver)
+Qwen2.5-14B,llm_plan,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer) → (place hammer metal_tray)
+Qwen2.5-14B,llm_plan,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver) → (place screwdriver metal_tray)
+Qwen2.5-14B,llm_plan,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+Qwen2.5-14B,llm_plan,workshop,underspecified,pick the hammer and give it to me,(navigate-to table) → (pick hammer)
+Qwen2.5-14B,llm_plan,workshop,underspecified,get me a tool to work with,(navigate-to table) → (pick hammer)
+Qwen2.5-14B,llm_plan,workshop,underspecified,hand me the hammer,(navigate-to table) → (pick hammer) → (navigate-to metal_tray) → (place hammer metal_tray)
+Qwen2.5-14B,llm_plan,workshop,underspecified,"I need to work on this, can you help",(pick hammer) → (navigate-to metal_tray) → (place hammer metal_tray) → (navigate-to table) → (pick metal_plate) → (navigate-to metal_tray) → (place metal_plate metal_tray) → (navigate-to table) → (pick power_drill) → (navigate-to metal_tray) → (place power_drill metal_tray)
+Qwen2.5-14B,llm_plan,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_plan,workshop,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_plan,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_plan,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,llm_pddl,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,
+Qwen2.5-14B,llm_pddl,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,cut the wood board,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,paint the wood board,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,slice the wood board,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,the wood board should be sliced,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,the wood board should be painted,
+Qwen2.5-14B,llm_pddl,workshop,needs_enrichment,the metal plate should be painted,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,look at the screwdriver,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-14B,llm_pddl,workshop,template_complete,place the hammer on the metal tray,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,place the screwdriver on the metal tray,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,stack the wood block on the second wood block,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver table)
+Qwen2.5-14B,llm_pddl,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-14B,llm_pddl,workshop,template_complete,"the hammer belongs on the metal tray, not the table",
+Qwen2.5-14B,llm_pddl,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",
+Qwen2.5-14B,llm_pddl,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-14B,llm_pddl,workshop,underspecified,pick the hammer and give it to me,
+Qwen2.5-14B,llm_pddl,workshop,underspecified,get me a tool to work with,
+Qwen2.5-14B,llm_pddl,workshop,underspecified,hand me the hammer,(pick hammer table)
+Qwen2.5-14B,llm_pddl,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-14B,llm_pddl,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,llm_pddl,workshop,ungenerable,solder the broken wire,
+Qwen2.5-14B,llm_pddl,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,llm_pddl,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,enrich,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen2.5-14B,enrich,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-14B,enrich,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,cut the wood board,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,paint the wood board,(pick wood_board table) → (paint wood_board wood_board)
+Qwen2.5-14B,enrich,workshop,needs_enrichment,slice the wood board,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,the wood board should be sliced,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen2.5-14B,enrich,workshop,needs_enrichment,the wood board should be painted,(pick wood_board table) → (paint wood_board wood_board)
+Qwen2.5-14B,enrich,workshop,needs_enrichment,the metal plate should be painted,(pick metal_plate table) → (paint metal_plate metal_plate)
+Qwen2.5-14B,enrich,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-14B,enrich,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-14B,enrich,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-14B,enrich,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-14B,enrich,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen2.5-14B,enrich,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen2.5-14B,enrich,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-14B,enrich,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-14B,enrich,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-14B,enrich,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-14B,enrich,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen2.5-14B,enrich,workshop,underspecified,get me a tool to work with,
+Qwen2.5-14B,enrich,workshop,underspecified,hand me the hammer,
+Qwen2.5-14B,enrich,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-14B,enrich,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,enrich,workshop,ungenerable,solder the broken wire,
+Qwen2.5-14B,enrich,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,enrich,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen2.5-14B,r1,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen2.5-14B,r1,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen2.5-14B,r1,workshop,needs_enrichment,clamp the wood board,
+Qwen2.5-14B,r1,workshop,needs_enrichment,cut the wood board,(look-at power_drill) → (pick power_drill table) → (cut wood_board power_drill)
+Qwen2.5-14B,r1,workshop,needs_enrichment,drill a hole in the metal plate,(look-at power_drill) → (pick power_drill table) → (drill metal_plate power_drill)
+Qwen2.5-14B,r1,workshop,needs_enrichment,paint the wood board,(look-at marker_pen) → (pick marker_pen table) → (paint marker_pen wood_board)
+Qwen2.5-14B,r1,workshop,needs_enrichment,slice the wood board,(look-at power_drill) → (pick power_drill table) → (cut wood_board power_drill)
+Qwen2.5-14B,r1,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen2.5-14B,r1,workshop,needs_enrichment,the wood board should be sliced,
+Qwen2.5-14B,r1,workshop,needs_enrichment,the metal plate should have a hole in it,(look-at power_drill) → (pick power_drill table) → (drill metal_plate power_drill)
+Qwen2.5-14B,r1,workshop,needs_enrichment,the wood board should be painted,(look-at marker_pen) → (pick marker_pen table) → (paint marker_pen wood_board)
+Qwen2.5-14B,r1,workshop,needs_enrichment,the metal plate should be painted,(look-at marker_pen) → (pick marker_pen table) → (paint marker_pen metal_plate)
+Qwen2.5-14B,r1,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen2.5-14B,r1,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen2.5-14B,r1,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-14B,r1,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-14B,r1,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen2.5-14B,r1,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen2.5-14B,r1,workshop,template_complete,inspect the screwdriver more closely,
+Qwen2.5-14B,r1,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen2.5-14B,r1,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen2.5-14B,r1,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen2.5-14B,r1,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen2.5-14B,r1,workshop,underspecified,get me a tool to work with,
+Qwen2.5-14B,r1,workshop,underspecified,hand me the hammer,
+Qwen2.5-14B,r1,workshop,underspecified,"I need to work on this, can you help",
+Qwen2.5-14B,r1,workshop,ungenerable,make the cup float in the air,
+Qwen2.5-14B,r1,workshop,ungenerable,solder the broken wire,
+Qwen2.5-14B,r1,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen2.5-14B,r1,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_plan,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube) → (place wood_cube shelf) → (pick blue_box) → (stack blue_box wood_cube)
+Qwen3.6,llm_plan,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube) → (place wood_cube shelf) → (pick blue_box) → (stack blue_box wood_cube)
+Qwen3.6,llm_plan,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen3.6,llm_plan,tabletop,template_complete,pick the wood cube,(pick wood_cube)
+Qwen3.6,llm_plan,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf)
+Qwen3.6,llm_plan,tabletop,template_complete,place the red cup on the shelf,(pick red_cup) → (navigate-to shelf) → (place red_cup shelf)
+Qwen3.6,llm_plan,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube) → (stack wood_cube blue_box)
+Qwen3.6,llm_plan,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube)
+Qwen3.6,llm_plan,tabletop,template_complete,inspect the wood cube more closely,(look-at wood_cube)
+Qwen3.6,llm_plan,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube) → (place wood_cube shelf)
+Qwen3.6,llm_plan,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup) → (place red_cup shelf)
+Qwen3.6,llm_plan,tabletop,template_complete,make a small tower with the wood cube on the blue box,(pick wood_cube) → (place wood_cube blue_box)
+Qwen3.6,llm_plan,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube)
+Qwen3.6,llm_plan,tabletop,underspecified,place something on the shelf for me,(pick wood_cube) → (place wood_cube shelf)
+Qwen3.6,llm_plan,tabletop,underspecified,hand me the wood cube,(pick wood_cube)
+Qwen3.6,llm_plan,tabletop,underspecified,I need something from the table,(pick wood_cube)
+Qwen3.6,llm_plan,tabletop,ungenerable,make the cup float in the air,
+Qwen3.6,llm_plan,tabletop,ungenerable,solder the broken wire,
+Qwen3.6,llm_plan,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_plan,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_pddl,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,
+Qwen3.6,llm_pddl,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",
+Qwen3.6,llm_pddl,tabletop,template_complete,look at the wood cube,
+Qwen3.6,llm_pddl,tabletop,template_complete,pick the wood cube,
+Qwen3.6,llm_pddl,tabletop,template_complete,place the wood cube on the shelf,
+Qwen3.6,llm_pddl,tabletop,template_complete,place the red cup on the shelf,
+Qwen3.6,llm_pddl,tabletop,template_complete,stack the wood cube on the blue box,
+Qwen3.6,llm_pddl,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube table)
+Qwen3.6,llm_pddl,tabletop,template_complete,inspect the wood cube more closely,
+Qwen3.6,llm_pddl,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",
+Qwen3.6,llm_pddl,tabletop,template_complete,"the red cup belongs on the shelf, not the table",
+Qwen3.6,llm_pddl,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen3.6,llm_pddl,tabletop,underspecified,pick the wood cube and give it to me,
+Qwen3.6,llm_pddl,tabletop,underspecified,place something on the shelf for me,
+Qwen3.6,llm_pddl,tabletop,underspecified,hand me the wood cube,
+Qwen3.6,llm_pddl,tabletop,underspecified,I need something from the table,
+Qwen3.6,llm_pddl,tabletop,ungenerable,make the cup float in the air,
+Qwen3.6,llm_pddl,tabletop,ungenerable,solder the broken wire,
+Qwen3.6,llm_pddl,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_pddl,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,enrich,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen3.6,enrich,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen3.6,enrich,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen3.6,enrich,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen3.6,enrich,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen3.6,enrich,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen3.6,enrich,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen3.6,enrich,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen3.6,enrich,tabletop,template_complete,inspect the wood cube more closely,
+Qwen3.6,enrich,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen3.6,enrich,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen3.6,enrich,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen3.6,enrich,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen3.6,enrich,tabletop,underspecified,place something on the shelf for me,
+Qwen3.6,enrich,tabletop,underspecified,hand me the wood cube,
+Qwen3.6,enrich,tabletop,underspecified,I need something from the table,
+Qwen3.6,enrich,tabletop,ungenerable,make the cup float in the air,
+Qwen3.6,enrich,tabletop,ungenerable,solder the broken wire,
+Qwen3.6,enrich,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,enrich,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,r1,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen3.6,r1,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+Qwen3.6,r1,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+Qwen3.6,r1,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+Qwen3.6,r1,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+Qwen3.6,r1,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+Qwen3.6,r1,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+Qwen3.6,r1,tabletop,template_complete,the wood cube should be in the gripper,
+Qwen3.6,r1,tabletop,template_complete,inspect the wood cube more closely,
+Qwen3.6,r1,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+Qwen3.6,r1,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+Qwen3.6,r1,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+Qwen3.6,r1,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+Qwen3.6,r1,tabletop,underspecified,place something on the shelf for me,
+Qwen3.6,r1,tabletop,underspecified,hand me the wood cube,
+Qwen3.6,r1,tabletop,underspecified,I need something from the table,
+Qwen3.6,r1,tabletop,ungenerable,make the cup float in the air,
+Qwen3.6,r1,tabletop,ungenerable,solder the broken wire,
+Qwen3.6,r1,tabletop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,r1,tabletop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_plan,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug) → (place mug tray) → (pick tea_box) → (stack tea_box mug)
+Qwen3.6,llm_plan,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug) → (place mug tray) → (pick tea_box) → (place tea_box mug)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,cut the tea box,(pick tea_box) → (cut tea_box)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,mix the contents of the cup,(pick cup) → (stir cup) → (place cup table)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,pour the can into the glass,(pick can) → (pour can glass) → (place can table)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,stir the cup,(pick spoon) → (stir cup)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,tilt the can,(pick can)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,the can should be tilted,(pick can) → (tilt can)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,the tea box needs to be sliced open,(pick tea_box) → (cut tea_box)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,the glass should be filled from the can,(pick can) → (pour can glass) → (place can table)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,the mug should be filled from the can,(pick can) → (pour can mug) → (place can table)
+Qwen3.6,llm_plan,kitchen,needs_enrichment,the contents of the cup should be mixed,(pick cup) → (stir cup) → (place cup table)
+Qwen3.6,llm_plan,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen3.6,llm_plan,kitchen,template_complete,pick the mug,(pick mug)
+Qwen3.6,llm_plan,kitchen,template_complete,place the mug on the tray,(pick mug) → (place mug tray)
+Qwen3.6,llm_plan,kitchen,template_complete,place the cup on the tray,(pick cup) → (place cup tray)
+Qwen3.6,llm_plan,kitchen,template_complete,stack the tea box on the plate,(pick tea_box) → (stack tea_box plate)
+Qwen3.6,llm_plan,kitchen,template_complete,the mug should be in the gripper,(pick mug)
+Qwen3.6,llm_plan,kitchen,template_complete,inspect the mug more closely,(pick mug) → (look-at mug)
+Qwen3.6,llm_plan,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug) → (place mug tray)
+Qwen3.6,llm_plan,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup) → (place cup tray)
+Qwen3.6,llm_plan,kitchen,template_complete,put the tea box on top of the plate,(pick tea_box) → (place tea_box plate)
+Qwen3.6,llm_plan,kitchen,underspecified,pick the glass and give it to me,(pick glass)
+Qwen3.6,llm_plan,kitchen,underspecified,pour me something to drink,
+Qwen3.6,llm_plan,kitchen,underspecified,hand me the glass,(pick glass)
+Qwen3.6,llm_plan,kitchen,underspecified,"i am thirsty, can you help",(pick mug) → (place mug tray)
+Qwen3.6,llm_plan,kitchen,ungenerable,make the cup float in the air,(pick cup)
+Qwen3.6,llm_plan,kitchen,ungenerable,solder the broken wire,
+Qwen3.6,llm_plan,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_plan,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_pddl,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,
+Qwen3.6,llm_pddl,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,cut the tea box,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,pour the can into the glass,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,stir the cup,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,tilt the can,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,the can should be tilted,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen3.6,llm_pddl,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen3.6,llm_pddl,kitchen,template_complete,look at the mug,
+Qwen3.6,llm_pddl,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen3.6,llm_pddl,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen3.6,llm_pddl,kitchen,template_complete,place the cup on the tray,
+Qwen3.6,llm_pddl,kitchen,template_complete,stack the tea box on the plate,
+Qwen3.6,llm_pddl,kitchen,template_complete,the mug should be in the gripper,
+Qwen3.6,llm_pddl,kitchen,template_complete,inspect the mug more closely,
+Qwen3.6,llm_pddl,kitchen,template_complete,"the mug belongs on the tray, not the table",
+Qwen3.6,llm_pddl,kitchen,template_complete,"the cup belongs on the tray, not the table",
+Qwen3.6,llm_pddl,kitchen,template_complete,put the tea box on top of the plate,
+Qwen3.6,llm_pddl,kitchen,underspecified,pick the glass and give it to me,
+Qwen3.6,llm_pddl,kitchen,underspecified,pour me something to drink,
+Qwen3.6,llm_pddl,kitchen,underspecified,hand me the glass,
+Qwen3.6,llm_pddl,kitchen,underspecified,"i am thirsty, can you help",
+Qwen3.6,llm_pddl,kitchen,ungenerable,make the cup float in the air,
+Qwen3.6,llm_pddl,kitchen,ungenerable,solder the broken wire,
+Qwen3.6,llm_pddl,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_pddl,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,enrich,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen3.6,enrich,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen3.6,enrich,kitchen,needs_enrichment,cut the tea box,
+Qwen3.6,enrich,kitchen,needs_enrichment,mix the contents of the cup,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+Qwen3.6,enrich,kitchen,needs_enrichment,pour the can into the glass,(look-at can) → (pick can table) → (pour can glass)
+Qwen3.6,enrich,kitchen,needs_enrichment,stir the cup,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+Qwen3.6,enrich,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+Qwen3.6,enrich,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+Qwen3.6,enrich,kitchen,needs_enrichment,the tea box needs to be sliced open,
+Qwen3.6,enrich,kitchen,needs_enrichment,the glass should be filled from the can,(look-at can) → (pick can table) → (pour can glass)
+Qwen3.6,enrich,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug)
+Qwen3.6,enrich,kitchen,needs_enrichment,the contents of the cup should be mixed,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+Qwen3.6,enrich,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen3.6,enrich,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen3.6,enrich,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen3.6,enrich,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen3.6,enrich,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen3.6,enrich,kitchen,template_complete,the mug should be in the gripper,
+Qwen3.6,enrich,kitchen,template_complete,inspect the mug more closely,
+Qwen3.6,enrich,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen3.6,enrich,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen3.6,enrich,kitchen,template_complete,put the tea box on top of the plate,
+Qwen3.6,enrich,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen3.6,enrich,kitchen,underspecified,pour me something to drink,(look-at tea_box) → (pick tea_box table) → (pour tea_box cup)
+Qwen3.6,enrich,kitchen,underspecified,hand me the glass,
+Qwen3.6,enrich,kitchen,underspecified,"i am thirsty, can you help",
+Qwen3.6,enrich,kitchen,ungenerable,make the cup float in the air,
+Qwen3.6,enrich,kitchen,ungenerable,solder the broken wire,
+Qwen3.6,enrich,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,enrich,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,r1,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen3.6,r1,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+Qwen3.6,r1,kitchen,needs_enrichment,cut the tea box,(look-at knife) → (pick knife table) → (cut tea_box knife)
+Qwen3.6,r1,kitchen,needs_enrichment,mix the contents of the cup,
+Qwen3.6,r1,kitchen,needs_enrichment,pour the can into the glass,
+Qwen3.6,r1,kitchen,needs_enrichment,stir the cup,(look-at spoon) → (pick spoon table) → (stir cup spoon)
+Qwen3.6,r1,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+Qwen3.6,r1,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+Qwen3.6,r1,kitchen,needs_enrichment,the tea box needs to be sliced open,(look-at knife) → (pick knife table) → (cut tea_box knife)
+Qwen3.6,r1,kitchen,needs_enrichment,the glass should be filled from the can,
+Qwen3.6,r1,kitchen,needs_enrichment,the mug should be filled from the can,
+Qwen3.6,r1,kitchen,needs_enrichment,the contents of the cup should be mixed,
+Qwen3.6,r1,kitchen,template_complete,look at the mug,(look-at mug)
+Qwen3.6,r1,kitchen,template_complete,pick the mug,(pick mug table)
+Qwen3.6,r1,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+Qwen3.6,r1,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+Qwen3.6,r1,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+Qwen3.6,r1,kitchen,template_complete,the mug should be in the gripper,
+Qwen3.6,r1,kitchen,template_complete,inspect the mug more closely,
+Qwen3.6,r1,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+Qwen3.6,r1,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+Qwen3.6,r1,kitchen,template_complete,put the tea box on top of the plate,
+Qwen3.6,r1,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+Qwen3.6,r1,kitchen,underspecified,pour me something to drink,
+Qwen3.6,r1,kitchen,underspecified,hand me the glass,
+Qwen3.6,r1,kitchen,underspecified,"i am thirsty, can you help",
+Qwen3.6,r1,kitchen,ungenerable,make the cup float in the air,
+Qwen3.6,r1,kitchen,ungenerable,solder the broken wire,
+Qwen3.6,r1,kitchen,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,r1,kitchen,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_plan,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block) → (place wood_block metal_tray) → (pick wood_block2) → (stack wood_block2 wood_block)
+Qwen3.6,llm_plan,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block) → (place wood_block metal_tray) → (pick wood_block2) → (stack wood_block2 wood_block)
+Qwen3.6,llm_plan,workshop,needs_enrichment,clamp the wood board,(pick wood_board) → (clamp wood_board)
+Qwen3.6,llm_plan,workshop,needs_enrichment,cut the wood board,(pick scissors) → (cut wood_board)
+Qwen3.6,llm_plan,workshop,needs_enrichment,drill a hole in the metal plate,(pick power_drill) → (pick metal_plate) → (drill metal_plate) → (place metal_plate table) → (place power_drill table)
+Qwen3.6,llm_plan,workshop,needs_enrichment,paint the wood board,(pick paint_brush) → (pick paint_can) → (paint paint_can wood_board) → (place paint_can table) → (place paint_brush table)
+Qwen3.6,llm_plan,workshop,needs_enrichment,slice the wood board,
+Qwen3.6,llm_plan,workshop,needs_enrichment,the wood board should be secured in the clamp,(pick wood_board) → (clamp wood_board)
+Qwen3.6,llm_plan,workshop,needs_enrichment,the wood board should be sliced,(pick wood_board) → (cut wood_board)
+Qwen3.6,llm_plan,workshop,needs_enrichment,the metal plate should have a hole in it,(pick power_drill) → (pick metal_plate) → (clamp metal_plate) → (drill metal_plate)
+Qwen3.6,llm_plan,workshop,needs_enrichment,the wood board should be painted,(pick wood_board) → (pick paint_brush) → (pick paint_can) → (paint paint_can wood_board) → (place wood_board table)
+Qwen3.6,llm_plan,workshop,needs_enrichment,the metal plate should be painted,(pick paint_can) → (pick paint_brush) → (paint paint_brush metal_plate)
+Qwen3.6,llm_plan,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen3.6,llm_plan,workshop,template_complete,pick the screwdriver,(pick screwdriver)
+Qwen3.6,llm_plan,workshop,template_complete,place the hammer on the metal tray,(pick hammer) → (place hammer metal_tray)
+Qwen3.6,llm_plan,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver) → (place screwdriver metal_tray)
+Qwen3.6,llm_plan,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+Qwen3.6,llm_plan,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver)
+Qwen3.6,llm_plan,workshop,template_complete,inspect the screwdriver more closely,(look-at screwdriver)
+Qwen3.6,llm_plan,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer) → (place hammer metal_tray)
+Qwen3.6,llm_plan,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver) → (place screwdriver metal_tray)
+Qwen3.6,llm_plan,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block) → (place wood_block wood_block2)
+Qwen3.6,llm_plan,workshop,underspecified,pick the hammer and give it to me,
+Qwen3.6,llm_plan,workshop,underspecified,get me a tool to work with,
+Qwen3.6,llm_plan,workshop,underspecified,hand me the hammer,(pick hammer)
+Qwen3.6,llm_plan,workshop,underspecified,"I need to work on this, can you help",
+Qwen3.6,llm_plan,workshop,ungenerable,make the cup float in the air,
+Qwen3.6,llm_plan,workshop,ungenerable,solder the broken wire,
+Qwen3.6,llm_plan,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_plan,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,llm_pddl,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block)
+Qwen3.6,llm_pddl,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",
+Qwen3.6,llm_pddl,workshop,needs_enrichment,clamp the wood board,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,cut the wood board,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,paint the wood board,(pick wood_board table) → (paint wood_board wood_board)
+Qwen3.6,llm_pddl,workshop,needs_enrichment,slice the wood board,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,the wood board should be sliced,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,the wood board should be painted,
+Qwen3.6,llm_pddl,workshop,needs_enrichment,the metal plate should be painted,
+Qwen3.6,llm_pddl,workshop,template_complete,look at the screwdriver,
+Qwen3.6,llm_pddl,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen3.6,llm_pddl,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,llm_pddl,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,llm_pddl,workshop,template_complete,stack the wood block on the second wood block,
+Qwen3.6,llm_pddl,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver table)
+Qwen3.6,llm_pddl,workshop,template_complete,inspect the screwdriver more closely,
+Qwen3.6,llm_pddl,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,llm_pddl,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,llm_pddl,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block table) → (stack wood_block wood_block2)
+Qwen3.6,llm_pddl,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen3.6,llm_pddl,workshop,underspecified,get me a tool to work with,
+Qwen3.6,llm_pddl,workshop,underspecified,hand me the hammer,(pick hammer table)
+Qwen3.6,llm_pddl,workshop,underspecified,"I need to work on this, can you help",
+Qwen3.6,llm_pddl,workshop,ungenerable,make the cup float in the air,
+Qwen3.6,llm_pddl,workshop,ungenerable,solder the broken wire,
+Qwen3.6,llm_pddl,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,llm_pddl,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,enrich,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen3.6,enrich,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen3.6,enrich,workshop,needs_enrichment,clamp the wood board,
+Qwen3.6,enrich,workshop,needs_enrichment,cut the wood board,(pick wood_board table) → (cut wood_board wood_board)
+Qwen3.6,enrich,workshop,needs_enrichment,drill a hole in the metal plate,
+Qwen3.6,enrich,workshop,needs_enrichment,paint the wood board,(pick wood_board table) → (paint wood_board wood_board)
+Qwen3.6,enrich,workshop,needs_enrichment,slice the wood board,(pick wood_board table) → (cut wood_board wood_board)
+Qwen3.6,enrich,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen3.6,enrich,workshop,needs_enrichment,the wood board should be sliced,(pick wood_board table) → (cut wood_board wood_board)
+Qwen3.6,enrich,workshop,needs_enrichment,the metal plate should have a hole in it,
+Qwen3.6,enrich,workshop,needs_enrichment,the wood board should be painted,(pick wood_board table) → (paint wood_board wood_board)
+Qwen3.6,enrich,workshop,needs_enrichment,the metal plate should be painted,(pick metal_plate table) → (paint metal_plate metal_plate)
+Qwen3.6,enrich,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen3.6,enrich,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen3.6,enrich,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,enrich,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,enrich,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen3.6,enrich,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen3.6,enrich,workshop,template_complete,inspect the screwdriver more closely,
+Qwen3.6,enrich,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,enrich,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,enrich,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen3.6,enrich,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen3.6,enrich,workshop,underspecified,get me a tool to work with,
+Qwen3.6,enrich,workshop,underspecified,hand me the hammer,
+Qwen3.6,enrich,workshop,underspecified,"I need to work on this, can you help",
+Qwen3.6,enrich,workshop,ungenerable,make the cup float in the air,
+Qwen3.6,enrich,workshop,ungenerable,solder the broken wire,
+Qwen3.6,enrich,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,enrich,workshop,ungenerable,"the circuit is broken, join the wires",
+Qwen3.6,r1,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen3.6,r1,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+Qwen3.6,r1,workshop,needs_enrichment,clamp the wood board,
+Qwen3.6,r1,workshop,needs_enrichment,cut the wood board,
+Qwen3.6,r1,workshop,needs_enrichment,drill a hole in the metal plate,(look-at power_drill) → (pick power_drill table) → (drill power_drill metal_plate)
+Qwen3.6,r1,workshop,needs_enrichment,paint the wood board,(look-at paint_brush) → (pick paint_brush table) → (paint paint_brush wood_board)
+Qwen3.6,r1,workshop,needs_enrichment,slice the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+Qwen3.6,r1,workshop,needs_enrichment,the wood board should be secured in the clamp,
+Qwen3.6,r1,workshop,needs_enrichment,the wood board should be sliced,(look-at scissors) → (pick scissors table) → (cut wood_board scissors)
+Qwen3.6,r1,workshop,needs_enrichment,the metal plate should have a hole in it,(look-at power_drill) → (pick power_drill table) → (drill power_drill metal_plate)
+Qwen3.6,r1,workshop,needs_enrichment,the wood board should be painted,(look-at paint_brush) → (pick paint_brush table) → (paint paint_brush wood_board)
+Qwen3.6,r1,workshop,needs_enrichment,the metal plate should be painted,(look-at paint_brush) → (pick paint_brush table) → (paint paint_brush metal_plate)
+Qwen3.6,r1,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+Qwen3.6,r1,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+Qwen3.6,r1,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,r1,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,r1,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+Qwen3.6,r1,workshop,template_complete,the screwdriver should be in the gripper,
+Qwen3.6,r1,workshop,template_complete,inspect the screwdriver more closely,
+Qwen3.6,r1,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+Qwen3.6,r1,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+Qwen3.6,r1,workshop,template_complete,put the wood block on top of the second wood block,
+Qwen3.6,r1,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+Qwen3.6,r1,workshop,underspecified,get me a tool to work with,
+Qwen3.6,r1,workshop,underspecified,hand me the hammer,
+Qwen3.6,r1,workshop,underspecified,"I need to work on this, can you help",
+Qwen3.6,r1,workshop,ungenerable,make the cup float in the air,
+Qwen3.6,r1,workshop,ungenerable,solder the broken wire,
+Qwen3.6,r1,workshop,ungenerable,I want the cube to stay in the air by itself,
+Qwen3.6,r1,workshop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_plan,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube) → (place wood_cube shelf) → (pick blue_box) → (stack blue_box wood_cube)
+GLM-5.3,llm_plan,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube) → (place wood_cube shelf) → (pick blue_box) → (stack blue_box wood_cube)
+GLM-5.3,llm_plan,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+GLM-5.3,llm_plan,tabletop,template_complete,pick the wood cube,(pick wood_cube)
+GLM-5.3,llm_plan,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube) → (place wood_cube shelf)
+GLM-5.3,llm_plan,tabletop,template_complete,place the red cup on the shelf,(pick red_cup) → (place red_cup shelf)
+GLM-5.3,llm_plan,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube) → (stack wood_cube blue_box)
+GLM-5.3,llm_plan,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube)
+GLM-5.3,llm_plan,tabletop,template_complete,inspect the wood cube more closely,(look-at wood_cube)
+GLM-5.3,llm_plan,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube) → (place wood_cube shelf)
+GLM-5.3,llm_plan,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup) → (place red_cup shelf)
+GLM-5.3,llm_plan,tabletop,template_complete,make a small tower with the wood cube on the blue box,(pick wood_cube) → (stack wood_cube blue_box)
+GLM-5.3,llm_plan,tabletop,underspecified,pick the wood cube and give it to me,
+GLM-5.3,llm_plan,tabletop,underspecified,place something on the shelf for me,(pick wood_cube) → (navigate-to shelf) → (place wood_cube shelf)
+GLM-5.3,llm_plan,tabletop,underspecified,hand me the wood cube,
+GLM-5.3,llm_plan,tabletop,underspecified,I need something from the table,
+GLM-5.3,llm_plan,tabletop,ungenerable,make the cup float in the air,
+GLM-5.3,llm_plan,tabletop,ungenerable,solder the broken wire,
+GLM-5.3,llm_plan,tabletop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_plan,tabletop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_pddl,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,
+GLM-5.3,llm_pddl,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick blue_box) → (stack blue_box wood_cube) → (pick wood_cube) → (place wood_cube shelf)
+GLM-5.3,llm_pddl,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+GLM-5.3,llm_pddl,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+GLM-5.3,llm_pddl,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+GLM-5.3,llm_pddl,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,llm_pddl,tabletop,template_complete,stack the wood cube on the blue box,
+GLM-5.3,llm_pddl,tabletop,template_complete,the wood cube should be in the gripper,(pick wood_cube table)
+GLM-5.3,llm_pddl,tabletop,template_complete,inspect the wood cube more closely,(look-at wood_cube table)
+GLM-5.3,llm_pddl,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",(pick wood_cube table) → (place wood_cube shelf)
+GLM-5.3,llm_pddl,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,llm_pddl,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+GLM-5.3,llm_pddl,tabletop,underspecified,pick the wood cube and give it to me,
+GLM-5.3,llm_pddl,tabletop,underspecified,place something on the shelf for me,
+GLM-5.3,llm_pddl,tabletop,underspecified,hand me the wood cube,
+GLM-5.3,llm_pddl,tabletop,underspecified,I need something from the table,
+GLM-5.3,llm_pddl,tabletop,ungenerable,make the cup float in the air,
+GLM-5.3,llm_pddl,tabletop,ungenerable,solder the broken wire,
+GLM-5.3,llm_pddl,tabletop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_pddl,tabletop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,enrich,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+GLM-5.3,enrich,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+GLM-5.3,enrich,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+GLM-5.3,enrich,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+GLM-5.3,enrich,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+GLM-5.3,enrich,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,enrich,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+GLM-5.3,enrich,tabletop,template_complete,the wood cube should be in the gripper,
+GLM-5.3,enrich,tabletop,template_complete,inspect the wood cube more closely,
+GLM-5.3,enrich,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",
+GLM-5.3,enrich,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,enrich,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+GLM-5.3,enrich,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+GLM-5.3,enrich,tabletop,underspecified,place something on the shelf for me,
+GLM-5.3,enrich,tabletop,underspecified,hand me the wood cube,
+GLM-5.3,enrich,tabletop,underspecified,I need something from the table,
+GLM-5.3,enrich,tabletop,ungenerable,make the cup float in the air,
+GLM-5.3,enrich,tabletop,ungenerable,solder the broken wire,
+GLM-5.3,enrich,tabletop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,enrich,tabletop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,r1,tabletop,long_sequence,place the wood cube on the shelf then stack the blue box on the wood cube,(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+GLM-5.3,r1,tabletop,long_sequence,"the wood cube belongs on the shelf, then put the blue box on top of it",(pick wood_cube table) → (place wood_cube shelf) → (pick blue_box table) → (stack blue_box wood_cube shelf)
+GLM-5.3,r1,tabletop,template_complete,look at the wood cube,(look-at wood_cube)
+GLM-5.3,r1,tabletop,template_complete,pick the wood cube,(pick wood_cube table)
+GLM-5.3,r1,tabletop,template_complete,place the wood cube on the shelf,(pick wood_cube table) → (place wood_cube shelf)
+GLM-5.3,r1,tabletop,template_complete,place the red cup on the shelf,(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,r1,tabletop,template_complete,stack the wood cube on the blue box,(pick wood_cube table) → (stack wood_cube blue_box table)
+GLM-5.3,r1,tabletop,template_complete,the wood cube should be in the gripper,
+GLM-5.3,r1,tabletop,template_complete,inspect the wood cube more closely,
+GLM-5.3,r1,tabletop,template_complete,"the wood cube belongs on the shelf, not the table",
+GLM-5.3,r1,tabletop,template_complete,"the red cup belongs on the shelf, not the table",(pick red_cup table) → (place red_cup shelf)
+GLM-5.3,r1,tabletop,template_complete,make a small tower with the wood cube on the blue box,
+GLM-5.3,r1,tabletop,underspecified,pick the wood cube and give it to me,(pick wood_cube table)
+GLM-5.3,r1,tabletop,underspecified,place something on the shelf for me,
+GLM-5.3,r1,tabletop,underspecified,hand me the wood cube,
+GLM-5.3,r1,tabletop,underspecified,I need something from the table,
+GLM-5.3,r1,tabletop,ungenerable,make the cup float in the air,
+GLM-5.3,r1,tabletop,ungenerable,solder the broken wire,
+GLM-5.3,r1,tabletop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,r1,tabletop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_plan,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug) → (place mug tray) → (pick tea_box) → (stack tea_box mug)
+GLM-5.3,llm_plan,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug) → (place mug tray) → (pick tea_box) → (stack tea_box mug)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,cut the tea box,(pick knife) → (cut tea_box)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,mix the contents of the cup,(pick spoon) → (stir cup)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,pour the can into the glass,(pick can) → (pour can glass)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,stir the cup,(pick spoon) → (stir cup)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,tilt the can,(pick can) → (tilt can)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,the can should be tilted,(pick can) → (tilt can)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,the tea box needs to be sliced open,(pick knife) → (cut tea_box)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,the glass should be filled from the can,(pick can) → (pour can glass)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,the mug should be filled from the can,(pick can) → (pour can mug) → (place can table)
+GLM-5.3,llm_plan,kitchen,needs_enrichment,the contents of the cup should be mixed,(pick spoon) → (stir cup)
+GLM-5.3,llm_plan,kitchen,template_complete,look at the mug,(look-at mug)
+GLM-5.3,llm_plan,kitchen,template_complete,pick the mug,(pick mug)
+GLM-5.3,llm_plan,kitchen,template_complete,place the mug on the tray,(pick mug) → (place mug tray)
+GLM-5.3,llm_plan,kitchen,template_complete,place the cup on the tray,(pick cup) → (place cup tray)
+GLM-5.3,llm_plan,kitchen,template_complete,stack the tea box on the plate,(pick tea_box) → (stack tea_box plate)
+GLM-5.3,llm_plan,kitchen,template_complete,the mug should be in the gripper,(pick mug)
+GLM-5.3,llm_plan,kitchen,template_complete,inspect the mug more closely,(look-at mug)
+GLM-5.3,llm_plan,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug) → (place mug tray)
+GLM-5.3,llm_plan,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup) → (place cup tray)
+GLM-5.3,llm_plan,kitchen,template_complete,put the tea box on top of the plate,(pick tea_box) → (place tea_box plate)
+GLM-5.3,llm_plan,kitchen,underspecified,pick the glass and give it to me,(pick glass)
+GLM-5.3,llm_plan,kitchen,underspecified,pour me something to drink,(pick cup) → (pour cup glass)
+GLM-5.3,llm_plan,kitchen,underspecified,hand me the glass,(pick glass)
+GLM-5.3,llm_plan,kitchen,underspecified,"i am thirsty, can you help",(pick can) → (pour can cup)
+GLM-5.3,llm_plan,kitchen,ungenerable,make the cup float in the air,
+GLM-5.3,llm_plan,kitchen,ungenerable,solder the broken wire,
+GLM-5.3,llm_plan,kitchen,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_plan,kitchen,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_pddl,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,
+GLM-5.3,llm_pddl,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,cut the tea box,
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,mix the contents of the cup,(pick cup table) → (stir cup)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,pour the can into the glass,(pick can table) → (pour can glass table)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,stir the cup,(pick cup table) → (stir cup)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,the tea box needs to be sliced open,
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,the glass should be filled from the can,(pick can table) → (pour can glass table)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug)
+GLM-5.3,llm_pddl,kitchen,needs_enrichment,the contents of the cup should be mixed,
+GLM-5.3,llm_pddl,kitchen,template_complete,look at the mug,(look-at mug)
+GLM-5.3,llm_pddl,kitchen,template_complete,pick the mug,(pick mug table)
+GLM-5.3,llm_pddl,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+GLM-5.3,llm_pddl,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+GLM-5.3,llm_pddl,kitchen,template_complete,stack the tea box on the plate,
+GLM-5.3,llm_pddl,kitchen,template_complete,the mug should be in the gripper,(pick mug table)
+GLM-5.3,llm_pddl,kitchen,template_complete,inspect the mug more closely,
+GLM-5.3,llm_pddl,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+GLM-5.3,llm_pddl,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+GLM-5.3,llm_pddl,kitchen,template_complete,put the tea box on top of the plate,(pick tea_box table) → (stack tea_box plate)
+GLM-5.3,llm_pddl,kitchen,underspecified,pick the glass and give it to me,
+GLM-5.3,llm_pddl,kitchen,underspecified,pour me something to drink,(pick can table) → (pour can cup)
+GLM-5.3,llm_pddl,kitchen,underspecified,hand me the glass,(pick glass table)
+GLM-5.3,llm_pddl,kitchen,underspecified,"i am thirsty, can you help",
+GLM-5.3,llm_pddl,kitchen,ungenerable,make the cup float in the air,
+GLM-5.3,llm_pddl,kitchen,ungenerable,solder the broken wire,
+GLM-5.3,llm_pddl,kitchen,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_pddl,kitchen,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,enrich,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+GLM-5.3,enrich,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+GLM-5.3,enrich,kitchen,needs_enrichment,cut the tea box,
+GLM-5.3,enrich,kitchen,needs_enrichment,mix the contents of the cup,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+GLM-5.3,enrich,kitchen,needs_enrichment,pour the can into the glass,(look-at can) → (pick can table) → (pour can glass)
+GLM-5.3,enrich,kitchen,needs_enrichment,stir the cup,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+GLM-5.3,enrich,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+GLM-5.3,enrich,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+GLM-5.3,enrich,kitchen,needs_enrichment,the tea box needs to be sliced open,
+GLM-5.3,enrich,kitchen,needs_enrichment,the glass should be filled from the can,(look-at can) → (pick can table) → (pour can glass)
+GLM-5.3,enrich,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug)
+GLM-5.3,enrich,kitchen,needs_enrichment,the contents of the cup should be mixed,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+GLM-5.3,enrich,kitchen,template_complete,look at the mug,(look-at mug)
+GLM-5.3,enrich,kitchen,template_complete,pick the mug,(pick mug table)
+GLM-5.3,enrich,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+GLM-5.3,enrich,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+GLM-5.3,enrich,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+GLM-5.3,enrich,kitchen,template_complete,the mug should be in the gripper,
+GLM-5.3,enrich,kitchen,template_complete,inspect the mug more closely,
+GLM-5.3,enrich,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+GLM-5.3,enrich,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+GLM-5.3,enrich,kitchen,template_complete,put the tea box on top of the plate,
+GLM-5.3,enrich,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+GLM-5.3,enrich,kitchen,underspecified,pour me something to drink,(look-at can) → (pick can table) → (pour can cup)
+GLM-5.3,enrich,kitchen,underspecified,hand me the glass,
+GLM-5.3,enrich,kitchen,underspecified,"i am thirsty, can you help",(pick can table) → (pour can glass)
+GLM-5.3,enrich,kitchen,ungenerable,make the cup float in the air,
+GLM-5.3,enrich,kitchen,ungenerable,solder the broken wire,
+GLM-5.3,enrich,kitchen,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,enrich,kitchen,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,r1,kitchen,long_sequence,place the mug on the tray then stack the tea box on the mug,(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+GLM-5.3,r1,kitchen,long_sequence,"the mug belongs on the tray, then put the tea box on top of it",(pick mug table) → (place mug tray) → (pick tea_box table) → (stack tea_box mug tray)
+GLM-5.3,r1,kitchen,needs_enrichment,cut the tea box,(look-at knife) → (pick knife table) → (cut tea_box knife)
+GLM-5.3,r1,kitchen,needs_enrichment,mix the contents of the cup,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+GLM-5.3,r1,kitchen,needs_enrichment,pour the can into the glass,(look-at can) → (pick can table) → (pour can glass table)
+GLM-5.3,r1,kitchen,needs_enrichment,stir the cup,
+GLM-5.3,r1,kitchen,needs_enrichment,tilt the can,(pick can table) → (tilt can)
+GLM-5.3,r1,kitchen,needs_enrichment,the can should be tilted,(pick can table) → (tilt can)
+GLM-5.3,r1,kitchen,needs_enrichment,the tea box needs to be sliced open,(look-at knife) → (pick knife table) → (cut knife tea_box)
+GLM-5.3,r1,kitchen,needs_enrichment,the glass should be filled from the can,(look-at can) → (pick can table) → (pour can glass table)
+GLM-5.3,r1,kitchen,needs_enrichment,the mug should be filled from the can,(pick can table) → (pour can mug table)
+GLM-5.3,r1,kitchen,needs_enrichment,the contents of the cup should be mixed,(look-at spoon) → (pick spoon table) → (stir spoon cup)
+GLM-5.3,r1,kitchen,template_complete,look at the mug,(look-at mug)
+GLM-5.3,r1,kitchen,template_complete,pick the mug,(pick mug table)
+GLM-5.3,r1,kitchen,template_complete,place the mug on the tray,(pick mug table) → (place mug tray)
+GLM-5.3,r1,kitchen,template_complete,place the cup on the tray,(pick cup table) → (place cup tray)
+GLM-5.3,r1,kitchen,template_complete,stack the tea box on the plate,(pick tea_box table) → (stack tea_box plate table)
+GLM-5.3,r1,kitchen,template_complete,the mug should be in the gripper,
+GLM-5.3,r1,kitchen,template_complete,inspect the mug more closely,
+GLM-5.3,r1,kitchen,template_complete,"the mug belongs on the tray, not the table",(pick mug table) → (place mug tray)
+GLM-5.3,r1,kitchen,template_complete,"the cup belongs on the tray, not the table",(pick cup table) → (place cup tray)
+GLM-5.3,r1,kitchen,template_complete,put the tea box on top of the plate,
+GLM-5.3,r1,kitchen,underspecified,pick the glass and give it to me,(pick glass table)
+GLM-5.3,r1,kitchen,underspecified,pour me something to drink,
+GLM-5.3,r1,kitchen,underspecified,hand me the glass,
+GLM-5.3,r1,kitchen,underspecified,"i am thirsty, can you help",
+GLM-5.3,r1,kitchen,ungenerable,make the cup float in the air,
+GLM-5.3,r1,kitchen,ungenerable,solder the broken wire,
+GLM-5.3,r1,kitchen,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,r1,kitchen,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_plan,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block) → (place wood_block metal_tray) → (pick wood_block2) → (stack wood_block2 wood_block)
+GLM-5.3,llm_plan,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block) → (place wood_block metal_tray) → (pick wood_block2) → (stack wood_block2 wood_block)
+GLM-5.3,llm_plan,workshop,needs_enrichment,clamp the wood board,(clamp wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,cut the wood board,(pick scissors) → (cut wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,drill a hole in the metal plate,(pick power_drill) → (drill metal_plate)
+GLM-5.3,llm_plan,workshop,needs_enrichment,paint the wood board,(pick paint_brush) → (paint paint_brush wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,slice the wood board,(pick scissors) → (cut wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,the wood board should be secured in the clamp,(pick medium_clamp) → (clamp wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,the wood board should be sliced,(pick scissors) → (cut wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,the metal plate should have a hole in it,(clamp metal_plate) → (pick power_drill) → (drill metal_plate)
+GLM-5.3,llm_plan,workshop,needs_enrichment,the wood board should be painted,(pick paint_brush) → (paint paint_brush wood_board)
+GLM-5.3,llm_plan,workshop,needs_enrichment,the metal plate should be painted,(pick paint_brush) → (paint paint_brush metal_plate)
+GLM-5.3,llm_plan,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+GLM-5.3,llm_plan,workshop,template_complete,pick the screwdriver,(pick screwdriver)
+GLM-5.3,llm_plan,workshop,template_complete,place the hammer on the metal tray,(pick hammer) → (place hammer metal_tray)
+GLM-5.3,llm_plan,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver) → (place screwdriver metal_tray)
+GLM-5.3,llm_plan,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+GLM-5.3,llm_plan,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver)
+GLM-5.3,llm_plan,workshop,template_complete,inspect the screwdriver more closely,(look-at screwdriver)
+GLM-5.3,llm_plan,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer) → (place hammer metal_tray)
+GLM-5.3,llm_plan,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver) → (place screwdriver metal_tray)
+GLM-5.3,llm_plan,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block) → (stack wood_block wood_block2)
+GLM-5.3,llm_plan,workshop,underspecified,pick the hammer and give it to me,(pick hammer)
+GLM-5.3,llm_plan,workshop,underspecified,get me a tool to work with,(pick screwdriver) → (place screwdriver metal_tray)
+GLM-5.3,llm_plan,workshop,underspecified,hand me the hammer,(pick hammer)
+GLM-5.3,llm_plan,workshop,underspecified,"I need to work on this, can you help",
+GLM-5.3,llm_plan,workshop,ungenerable,make the cup float in the air,
+GLM-5.3,llm_plan,workshop,ungenerable,solder the broken wire,
+GLM-5.3,llm_plan,workshop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_plan,workshop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,llm_pddl,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,
+GLM-5.3,llm_pddl,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block)
+GLM-5.3,llm_pddl,workshop,needs_enrichment,clamp the wood board,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,cut the wood board,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,drill a hole in the metal plate,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,paint the wood board,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,slice the wood board,(pick hammer table) → (cut wood_board hammer table)
+GLM-5.3,llm_pddl,workshop,needs_enrichment,the wood board should be secured in the clamp,(clamp wood_board medium_clamp table)
+GLM-5.3,llm_pddl,workshop,needs_enrichment,the wood board should be sliced,(pick wrench table) → (cut wood_board wrench)
+GLM-5.3,llm_pddl,workshop,needs_enrichment,the metal plate should have a hole in it,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,the wood board should be painted,
+GLM-5.3,llm_pddl,workshop,needs_enrichment,the metal plate should be painted,(pick hammer table) → (paint hammer metal_plate)
+GLM-5.3,llm_pddl,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+GLM-5.3,llm_pddl,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+GLM-5.3,llm_pddl,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,llm_pddl,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,llm_pddl,workshop,template_complete,stack the wood block on the second wood block,
+GLM-5.3,llm_pddl,workshop,template_complete,the screwdriver should be in the gripper,(pick screwdriver table)
+GLM-5.3,llm_pddl,workshop,template_complete,inspect the screwdriver more closely,
+GLM-5.3,llm_pddl,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,llm_pddl,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,llm_pddl,workshop,template_complete,put the wood block on top of the second wood block,(pick wood_block table) → (stack wood_block wood_block2)
+GLM-5.3,llm_pddl,workshop,underspecified,pick the hammer and give it to me,
+GLM-5.3,llm_pddl,workshop,underspecified,get me a tool to work with,(pick hammer table)
+GLM-5.3,llm_pddl,workshop,underspecified,hand me the hammer,(pick hammer table)
+GLM-5.3,llm_pddl,workshop,underspecified,"I need to work on this, can you help",
+GLM-5.3,llm_pddl,workshop,ungenerable,make the cup float in the air,
+GLM-5.3,llm_pddl,workshop,ungenerable,solder the broken wire,
+GLM-5.3,llm_pddl,workshop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,llm_pddl,workshop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,enrich,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+GLM-5.3,enrich,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+GLM-5.3,enrich,workshop,needs_enrichment,clamp the wood board,
+GLM-5.3,enrich,workshop,needs_enrichment,cut the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+GLM-5.3,enrich,workshop,needs_enrichment,drill a hole in the metal plate,
+GLM-5.3,enrich,workshop,needs_enrichment,paint the wood board,(pick wood_board table) → (paint wood_board wood_board)
+GLM-5.3,enrich,workshop,needs_enrichment,slice the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+GLM-5.3,enrich,workshop,needs_enrichment,the wood board should be secured in the clamp,
+GLM-5.3,enrich,workshop,needs_enrichment,the wood board should be sliced,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+GLM-5.3,enrich,workshop,needs_enrichment,the metal plate should have a hole in it,
+GLM-5.3,enrich,workshop,needs_enrichment,the wood board should be painted,(pick wood_board table) → (paint wood_board wood_board)
+GLM-5.3,enrich,workshop,needs_enrichment,the metal plate should be painted,(pick metal_plate table) → (paint metal_plate metal_plate)
+GLM-5.3,enrich,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+GLM-5.3,enrich,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+GLM-5.3,enrich,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,enrich,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,enrich,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+GLM-5.3,enrich,workshop,template_complete,the screwdriver should be in the gripper,
+GLM-5.3,enrich,workshop,template_complete,inspect the screwdriver more closely,
+GLM-5.3,enrich,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,enrich,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,enrich,workshop,template_complete,put the wood block on top of the second wood block,
+GLM-5.3,enrich,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+GLM-5.3,enrich,workshop,underspecified,get me a tool to work with,
+GLM-5.3,enrich,workshop,underspecified,hand me the hammer,
+GLM-5.3,enrich,workshop,underspecified,"I need to work on this, can you help",
+GLM-5.3,enrich,workshop,ungenerable,make the cup float in the air,
+GLM-5.3,enrich,workshop,ungenerable,solder the broken wire,
+GLM-5.3,enrich,workshop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,enrich,workshop,ungenerable,"the circuit is broken, join the wires",
+GLM-5.3,r1,workshop,long_sequence,place the wood block on the metal tray then stack the second wood block on the wood block,(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+GLM-5.3,r1,workshop,long_sequence,"the wood block belongs on the metal tray, then put the second wood block on top of it",(pick wood_block table) → (place wood_block metal_tray) → (pick wood_block2 table) → (stack wood_block2 wood_block metal_tray)
+GLM-5.3,r1,workshop,needs_enrichment,clamp the wood board,(look-at medium_clamp) → (pick medium_clamp table) → (clamp medium_clamp wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,cut the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,drill a hole in the metal plate,(look-at power_drill) → (pick power_drill table) → (drill power_drill metal_plate)
+GLM-5.3,r1,workshop,needs_enrichment,paint the wood board,(look-at marker_pen) → (pick marker_pen table) → (paint marker_pen wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,slice the wood board,(look-at scissors) → (pick scissors table) → (cut scissors wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,the wood board should be secured in the clamp,(look-at medium_clamp) → (pick medium_clamp table) → (clamp medium_clamp wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,the wood board should be sliced,
+GLM-5.3,r1,workshop,needs_enrichment,the metal plate should have a hole in it,(look-at power_drill) → (pick power_drill table) → (drill power_drill metal_plate)
+GLM-5.3,r1,workshop,needs_enrichment,the wood board should be painted,(look-at paint_brush) → (pick paint_brush table) → (paint paint_brush wood_board)
+GLM-5.3,r1,workshop,needs_enrichment,the metal plate should be painted,(look-at paint_brush) → (pick paint_brush table) → (paint paint_brush metal_plate table)
+GLM-5.3,r1,workshop,template_complete,look at the screwdriver,(look-at screwdriver)
+GLM-5.3,r1,workshop,template_complete,pick the screwdriver,(pick screwdriver table)
+GLM-5.3,r1,workshop,template_complete,place the hammer on the metal tray,(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,r1,workshop,template_complete,place the screwdriver on the metal tray,(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,r1,workshop,template_complete,stack the wood block on the second wood block,(pick wood_block table) → (stack wood_block wood_block2 table)
+GLM-5.3,r1,workshop,template_complete,the screwdriver should be in the gripper,
+GLM-5.3,r1,workshop,template_complete,inspect the screwdriver more closely,
+GLM-5.3,r1,workshop,template_complete,"the hammer belongs on the metal tray, not the table",(pick hammer table) → (place hammer metal_tray)
+GLM-5.3,r1,workshop,template_complete,"the screwdriver belongs on the metal tray, not the table",(pick screwdriver table) → (place screwdriver metal_tray)
+GLM-5.3,r1,workshop,template_complete,put the wood block on top of the second wood block,
+GLM-5.3,r1,workshop,underspecified,pick the hammer and give it to me,(pick hammer table)
+GLM-5.3,r1,workshop,underspecified,get me a tool to work with,
+GLM-5.3,r1,workshop,underspecified,hand me the hammer,
+GLM-5.3,r1,workshop,underspecified,"I need to work on this, can you help",
+GLM-5.3,r1,workshop,ungenerable,make the cup float in the air,
+GLM-5.3,r1,workshop,ungenerable,solder the broken wire,
+GLM-5.3,r1,workshop,ungenerable,I want the cube to stay in the air by itself,
+GLM-5.3,r1,workshop,ungenerable,"the circuit is broken, join the wires",

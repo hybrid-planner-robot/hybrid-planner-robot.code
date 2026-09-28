@@ -1,0 +1,21 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "gripper_empty": true,
+  "objects": [
+    {"name": "can", "location": "table"},
+    {"name": "cup", "location": "table"},
+    {"name": "glass", "location": "table"},
+    {"name": "glass2", "location": "table"},
+    {"name": "mug", "location": "table"},
+    {"name": "spoon", "location": "table"},
+    {"name": "knife", "location": "table"},
+    {"name": "plate", "location": "table"},
+    {"name": "tea_box", "location": "table"},
+    {"name": "cutting_board", "location": "table"}
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "tray", "reachable": true}
+  ]
+}

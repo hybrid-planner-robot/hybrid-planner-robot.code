@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "objects": [
+    {
+      "name": "red_cup",
+      "type": "item",
+      "clear": true,
+      "reachable": true,
+      "source": "oracle",
+      "confidence": 1.0,
+      "location": "table"
+    }
+  ],
+  "locations": [
+    {"name": "table", "type": "location", "reachable": true, "source": "oracle", "confidence": 1.0},
+    {"name": "shelf", "type": "location", "reachable": true, "source": "oracle", "confidence": 1.0}
+  ],
+  "relations": [
+    {
+      "predicate": "on",
+      "args": ["red_cup", "table"],
+      "source": "oracle",
+      "confidence": 1.0
+    }
+  ],
+  "robot": {
+    "gripper_empty": true,
+    "holding": null,
+    "camera_aimed_at": "red_cup",
+    "source": "tracker",
+    "confidence": 1.0
+  },
+  "meta": {
+    "sources_used": ["oracle", "tracker", "fusion"],
+    "fusion_notes": ["mid-task after look_at red_cup"]
+  }
+}

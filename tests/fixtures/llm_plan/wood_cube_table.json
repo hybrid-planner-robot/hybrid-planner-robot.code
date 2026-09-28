@@ -1,0 +1,20 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "manipulation_base",
+  "gripper_empty": true,
+  "objects": [
+    {
+      "name": "wood_cube",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.40, "y": 0.0, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "shelf", "reachable": true}
+  ]
+}

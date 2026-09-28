@@ -1,0 +1,16 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "gripper_empty": true,
+  "objects": [
+    {"name": "wood_cube", "location": "table"},
+    {"name": "red_cup", "location": "table"},
+    {"name": "blue_box", "location": "table"},
+    {"name": "coke_can", "location": "table"},
+    {"name": "cricket_ball", "location": "table"}
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "shelf", "reachable": true}
+  ]
+}

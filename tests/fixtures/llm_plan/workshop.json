@@ -1,0 +1,27 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "gripper_empty": true,
+  "objects": [
+    {"name": "hammer", "location": "table"},
+    {"name": "marker_pen", "location": "table"},
+    {"name": "medium_clamp", "location": "table"},
+    {"name": "medium_clamp2", "location": "table"},
+    {"name": "metal_plate", "location": "table"},
+    {"name": "nut2", "location": "table"},
+    {"name": "paint_brush", "location": "table"},
+    {"name": "paint_can", "location": "table"},
+    {"name": "power_drill", "location": "table"},
+    {"name": "scissors", "location": "table"},
+    {"name": "screwdriver", "location": "table"},
+    {"name": "wood_block", "location": "table"},
+    {"name": "wood_block2", "location": "table"},
+    {"name": "wood_board", "location": "table"},
+    {"name": "wrench", "location": "table"}
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "metal_tray", "reachable": true}
+  ],
+  "note": "Frozen from GroundingDINO overview on workshop.world (min_score=0.4). Not Gazebo GT. small_box* skipped (outside FOV); metal_tray promoted to place location."
+}

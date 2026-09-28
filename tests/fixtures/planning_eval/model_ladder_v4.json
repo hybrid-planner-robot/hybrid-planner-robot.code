@@ -1,0 +1,53 @@
+{
+  "name": "planning_eval_v4_ladder",
+  "description": "V4 mock-init campaign. Three setting suites (tabletop, kitchen, workshop) with separate reports; all-worlds total is operational only. Local fp16 Qwen2.5-7B/14B; larger models via an OpenAI-compatible HTTP API. API key from VLMRP_TEXT_LLM_API_KEY, never from this file.",
+  "suites": [
+    "tests/fixtures/planning_eval/suite_v4_tabletop_mock.json",
+    "tests/fixtures/planning_eval/suite_v4_kitchen_mock.json",
+    "tests/fixtures/planning_eval/suite_v4_workshop_mock.json"
+  ],
+  "out_prefix": "v4",
+  "defaults": {
+    "mock_init": true,
+    "container": "vlm_ros2",
+    "timeout_s": 600,
+    "temperature": 0,
+    "api_base_url": "http://127.0.0.1:8000/v1",
+    "smoke_arms": "r1",
+    "smoke_cases": "explicit_place"
+  },
+  "profiles": [
+    {
+      "id": "local-qwen7b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16. Suite v4, three settings."
+    },
+    {
+      "id": "local-qwen14b",
+      "kind": "local",
+      "model": "Qwen/Qwen2.5-14B-Instruct",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "notes": "Local fp16. Needs ~28 GB weights + KV; close other GPU jobs first. Suite v4."
+    },
+    {
+      "id": "lab-qwen36",
+      "kind": "remote",
+      "model": "lab-qwen36",
+      "hf_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "enable_thinking": false,
+      "notes": "OpenAI-compatible vLLM. Qwen3.6-35B-A3B-FP8 (~3B active). Thinking OFF via chat_template_kwargs. Requires VLMRP_TEXT_LLM_API_KEY."
+    },
+    {
+      "id": "lab-glm53",
+      "kind": "remote",
+      "model": "lab-glm53",
+      "hf_id": "GLM-5.3-Flash",
+      "arms": "llm_plan,llm_pddl,enrich,r1",
+      "timeout_s": 900,
+      "notes": "OpenAI-compatible endpoint. GLM-5.3-Flash. Requires VLMRP_TEXT_LLM_API_KEY."
+    }
+  ]
+}

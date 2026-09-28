@@ -1,0 +1,29 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "domain_template": "containers_manipulation",
+  "gripper_empty": true,
+  "objects": [
+    {
+      "name": "red_cup",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.42, "y": -0.05, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "blue_box",
+      "location": "table",
+      "pose": {
+        "position": {"x": 0.38, "y": 0.12, "z": 0.82},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "locations": [
+    {"name": "table", "reachable": true},
+    {"name": "shelf", "reachable": true},
+    {"name": "drawer", "reachable": true, "open": true}
+  ]
+}

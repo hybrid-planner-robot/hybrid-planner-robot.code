@@ -1,0 +1,948 @@
+{
+  "name": "planning_eval_suite_v4_tabletop_mock",
+  "description": "V4 tabletop setting. Template pick/place/look-at/stack, refuse, long plan, underspecified. No enrichment family. Four default arms.",
+  "defaults": {
+    "hybrid": "mvp",
+    "control": "fd",
+    "goal_backend": "local_llm",
+    "domain_select": "llm",
+    "scene_source": "oracle",
+    "perception_only": false,
+    "plan_only": true,
+    "max_steps": 1,
+    "arms": [
+      "llm_plan",
+      "llm_pddl",
+      "enrich",
+      "r1"
+    ],
+    "report_style": "families",
+    "world": "tabletop"
+  },
+  "phrasing": {
+    "explicit": "NL names the motor skill (or a close synonym) and its arguments.",
+    "implicit": "NL states a need, condition, or goal without naming the skill."
+  },
+  "families": {
+    "template_complete": "Fixed-domain pick/place/look-at/stack. No catalog gap. Enrich/r1 must stay on the complete path.",
+    "ungenerable": "Nothing in the catalog can close the gap. Same four tasks on every setting. Pass = refuse, not a spurious pick/place plan.",
+    "long_sequence": "Template sequences of 4+ actions (pick/place/stack). No enrichment.",
+    "underspecified": "NL does not determine a unique modeled outcome. Pass = refuse or a plan in the allowlist; fail = spurious skill."
+  },
+  "cases": [
+    {
+      "id": "explicit_place",
+      "task": "place the wood cube on the shelf",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "wood_cube",
+            "shelf"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_place",
+      "task": "the wood cube belongs on the shelf, not the table",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "wood_cube",
+            "shelf"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_place_second",
+      "task": "place the red cup on the shelf",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "red_cup",
+            "table"
+          ],
+          [
+            "clear",
+            "red_cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_place_second",
+      "task": "the red cup belongs on the shelf, not the table",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "red_cup",
+            "table"
+          ],
+          [
+            "clear",
+            "red_cup"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "red_cup",
+            "shelf"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_pick",
+      "task": "pick the wood cube",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_holding",
+      "task": "the wood cube should be in the gripper",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_look",
+      "task": "look at the wood cube",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "camera-aimed-at",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "look-at"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_look",
+      "task": "inspect the wood cube more closely",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "camera-aimed-at",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "look-at"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_stack",
+      "task": "stack the wood cube on the blue box",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "on",
+            "blue_box",
+            "table"
+          ],
+          [
+            "clear",
+            "blue_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "wood_cube",
+            "blue_box"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_stack",
+      "task": "make a small tower with the wood cube on the blue box",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "on",
+            "blue_box",
+            "table"
+          ],
+          [
+            "clear",
+            "blue_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "wood_cube",
+            "blue_box"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_solder",
+      "task": "solder the broken wire",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "implicit_repair",
+      "task": "the circuit is broken, join the wires",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "explicit_levitate",
+      "task": "make the cup float in the air",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "implicit_hover",
+      "task": "I want the cube to stay in the air by itself",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "enrich": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        },
+        "r1": {
+          "path": "refused",
+          "plan": false,
+          "refuse": true
+        }
+      },
+      "note": "Same task on every setting."
+    },
+    {
+      "id": "explicit_long",
+      "task": "place the wood cube on the shelf then stack the blue box on the wood cube",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "long_sequence",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "on",
+            "blue_box",
+            "table"
+          ],
+          [
+            "clear",
+            "blue_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "blue_box",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place",
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "implicit_long",
+      "task": "the wood cube belongs on the shelf, then put the blue box on top of it",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "long_sequence",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "on",
+            "blue_box",
+            "table"
+          ],
+          [
+            "clear",
+            "blue_box"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "stacked-on",
+            "blue_box",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place",
+          "pick",
+          "stack"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        }
+      }
+    },
+    {
+      "id": "explicit_handover",
+      "task": "pick the wood cube and give it to me",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place"
+          ],
+          "allowed_objects": [
+            "wood_cube"
+          ]
+        }
+      },
+      "note": "Open intent: handover is not modeled."
+    },
+    {
+      "id": "implicit_handover",
+      "task": "hand me the wood cube",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place"
+          ],
+          "allowed_objects": [
+            "wood_cube"
+          ]
+        }
+      },
+      "note": "Open intent: handover is not modeled."
+    },
+    {
+      "id": "explicit_need",
+      "task": "place something on the shelf for me",
+      "world": "tabletop",
+      "phrasing": "explicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "on",
+            "wood_cube",
+            "shelf"
+          ]
+        ],
+        "plan_actions": [
+          "pick",
+          "place"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place"
+          ],
+          "allowed_objects": [
+            "wood_cube",
+            "red_cup",
+            "blue_box",
+            "shelf"
+          ],
+          "soft_golds": [
+            [
+              [
+                "on",
+                "red_cup",
+                "shelf"
+              ]
+            ],
+            [
+              [
+                "on",
+                "blue_box",
+                "shelf"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "wood_cube"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "red_cup"
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "Open intent: which object is not unique."
+    },
+    {
+      "id": "implicit_need",
+      "task": "I need something from the table",
+      "world": "tabletop",
+      "phrasing": "implicit",
+      "family": "underspecified",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [
+          [
+            "on",
+            "wood_cube",
+            "table"
+          ],
+          [
+            "clear",
+            "wood_cube"
+          ],
+          [
+            "gripper-empty"
+          ]
+        ],
+        "gold_goal": [
+          [
+            "holding",
+            "wood_cube"
+          ]
+        ],
+        "plan_actions": [
+          "pick"
+        ],
+        "enrich": {
+          "path": "complete",
+          "plan": true
+        },
+        "r1": {
+          "path": "complete",
+          "plan": true
+        },
+        "accept": {
+          "refuse": true,
+          "allowed_actions": [
+            "pick",
+            "place",
+            "look-at"
+          ],
+          "allowed_objects": [
+            "wood_cube",
+            "red_cup",
+            "blue_box",
+            "shelf"
+          ],
+          "soft_golds": [
+            [
+              [
+                "holding",
+                "red_cup"
+              ]
+            ],
+            [
+              [
+                "holding",
+                "blue_box"
+              ]
+            ],
+            [
+              [
+                "on",
+                "wood_cube",
+                "shelf"
+              ]
+            ]
+          ]
+        }
+      },
+      "note": "Open intent: no unique object or goal."
+    }
+  ]
+}

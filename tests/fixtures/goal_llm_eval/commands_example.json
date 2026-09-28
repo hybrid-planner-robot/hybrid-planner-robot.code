@@ -1,0 +1,12 @@
+{
+  "description": "Example NL commands for scripts/test_goal_llm.py --batch on the 'table' mock scenario",
+  "scenario_hint": "table",
+  "commands": [
+    {"command": "pick up the red cup", "gold": [["holding", "red_cup"]]},
+    {"command": "place red_cup on shelf", "gold": [["on", "red_cup", "shelf"]]},
+    {"command": "put the blue box on the table", "gold": [["on", "blue_box", "table"]]},
+    {"command": "look at blue_box", "gold": [["camera-aimed-at", "blue_box"]]},
+    {"command": "grasp the red cup"},
+    {"command": "move the red cup onto the shelf"}
+  ]
+}

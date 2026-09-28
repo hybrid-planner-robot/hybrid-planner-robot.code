@@ -1,0 +1,62 @@
+{
+  "format": "oracle_mock_v1",
+  "frame_id": "panda_link0",
+  "gripper_empty": true,
+  "holding": null,
+  "objects": [
+    {
+      "name": "red_grapes",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.5346569612544548, "y": -0.13593774588481874, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "green_grapes",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.45355189734571266, "y": 0.010756972283877335, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "purple_grapes",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.494, "y": -0.062, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "red_cube",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.45115626515715856, "y": -0.19253773695171839, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "yellow_cube",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.5296136494543996, "y": -0.24028041799851316, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    },
+    {
+      "name": "robot_arm",
+      "location": "blue_tablecloth",
+      "pose": {
+        "position": {"x": 0.25311869032423545, "y": -7.700892149865476e-05, "z": 0.025},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "locations": [
+    {"name": "black_desk", "reachable": true},
+    {"name": "blue_tablecloth", "reachable": true},
+    {"name": "gray_floor", "reachable": true},
+    {"name": "white_bowl", "type": "container", "reachable": true, "open": true}
+  ]
+}

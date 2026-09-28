@@ -1,0 +1,340 @@
+{
+  "name": "planning_eval_suite_v3_workshop_mock",
+  "description": "Parallel planning-only suite for the workshop robot. Not mixed into household claim 2 (n=10). Workshop catalog is {cut, drill, paint, clamp}; household pour/stir/tilt are not candidates. Same four default arms as v3 mock.",
+  "defaults": {
+    "hybrid": "mvp",
+    "control": "fd",
+    "goal_backend": "local_llm",
+    "domain_select": "llm",
+    "scene_source": "oracle",
+    "perception_only": false,
+    "plan_only": true,
+    "max_steps": 1,
+    "arms": [
+      "llm_plan",
+      "llm_pddl",
+      "enrich",
+      "r1"
+    ]
+  },
+  "families": {
+    "template_complete": "Fixed-domain pick/place/stack/look on workshop symbols. Same types as tabletop, different robot scene.",
+    "needs_enrichment": "Workshop catalog skills. Own strata — do not add these to kitchen claim 2.",
+    "ungenerable": "No catalog skill (solder/weld). Pass = refuse."
+  },
+  "cases": [
+    {
+      "id": "explicit_place",
+      "task": "place the hammer on the metal tray",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [["on", "hammer", "table"], ["clear", "hammer"], ["gripper-empty"]],
+        "gold_goal": [["on", "hammer", "metal_tray"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_place",
+      "task": "the hammer belongs on the metal tray, not the table",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [["on", "hammer", "table"], ["clear", "hammer"], ["gripper-empty"]],
+        "gold_goal": [["on", "hammer", "metal_tray"]],
+        "plan_actions": ["pick", "place"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_pick",
+      "task": "pick the screwdriver",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [["on", "screwdriver", "table"], ["clear", "screwdriver"], ["gripper-empty"]],
+        "gold_goal": [["holding", "screwdriver"]],
+        "plan_actions": ["pick"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_look",
+      "task": "look at the power drill",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [["on", "power_drill", "table"], ["clear", "power_drill"], ["gripper-empty"]],
+        "gold_goal": [["camera-aimed-at", "power_drill"]],
+        "plan_actions": ["look-at"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "implicit_look",
+      "task": "inspect the power drill",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "complete",
+        "required_init": [["on", "power_drill", "table"], ["clear", "power_drill"], ["gripper-empty"]],
+        "gold_goal": [["camera-aimed-at", "power_drill"]],
+        "plan_actions": ["look-at"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_stack",
+      "task": "stack the wood_block on wood_block2",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "template_complete",
+      "expect": {
+        "template": "manipulation_stacking",
+        "completeness": "complete",
+        "required_init": [
+          ["on", "wood_block", "table"],
+          ["on", "wood_block2", "table"],
+          ["clear", "wood_block"],
+          ["clear", "wood_block2"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["stacked-on", "wood_block", "wood_block2"]],
+        "plan_actions": ["pick", "stack"],
+        "select": {"plan": true},
+        "enrich": {"path": "complete", "plan": true},
+        "r1": {"path": "complete", "plan": true}
+      }
+    },
+    {
+      "id": "explicit_cut",
+      "task": "cut the wood board",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [["on", "wood_board", "table"], ["clear", "wood_board"], ["gripper-empty"]],
+        "gold_goal": [["cut-open", "wood_board"]],
+        "plan_actions": ["pick", "cut"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-cut": ["wood_board"]},
+        "affordances_forbidden": [["can-be-cut", "hammer"], ["can-pour", "hammer"]]
+      }
+    },
+    {
+      "id": "implicit_cut",
+      "task": "the wood board should be sliced",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "cut",
+        "required_init": [["on", "wood_board", "table"], ["clear", "wood_board"], ["gripper-empty"]],
+        "gold_goal": [["cut-open", "wood_board"]],
+        "plan_actions": ["pick", "cut"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-cut": ["wood_board"]},
+        "affordances_forbidden": [["can-be-cut", "hammer"]]
+      }
+    },
+    {
+      "id": "explicit_drill",
+      "task": "drill a hole in the metal plate",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "drill",
+        "required_init": [["on", "metal_plate", "table"], ["clear", "metal_plate"], ["gripper-empty"]],
+        "gold_goal": [["drilled", "metal_plate"]],
+        "plan_actions": ["pick", "drill"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-drilled": ["metal_plate", "wood_board"]},
+        "affordances_forbidden": [["can-be-drilled", "hammer"], ["can-pour", "hammer"]]
+      }
+    },
+    {
+      "id": "implicit_drill",
+      "task": "the metal plate should have a hole in it",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "drill",
+        "required_init": [["on", "metal_plate", "table"], ["clear", "metal_plate"], ["gripper-empty"]],
+        "gold_goal": [["drilled", "metal_plate"]],
+        "plan_actions": ["pick", "drill"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-drilled": ["metal_plate", "wood_board"]},
+        "affordances_forbidden": [["can-be-drilled", "hammer"]]
+      }
+    },
+    {
+      "id": "explicit_paint",
+      "task": "paint the wood board",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "paint",
+        "required_init": [
+          ["on", "paint_can", "table"],
+          ["on", "wood_board", "table"],
+          ["clear", "paint_can"],
+          ["clear", "wood_board"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["painted", "paint_can", "wood_board"]],
+        "plan_actions": ["pick", "paint"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {
+          "can-paint": ["paint_can", "paint_brush"],
+          "can-be-painted": ["wood_board", "metal_plate"]
+        },
+        "affordances_forbidden": [["can-paint", "hammer"], ["can-be-painted", "hammer"]]
+      }
+    },
+    {
+      "id": "implicit_paint",
+      "task": "the wood board should be painted",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "paint",
+        "required_init": [
+          ["on", "paint_can", "table"],
+          ["on", "wood_board", "table"],
+          ["clear", "paint_can"],
+          ["clear", "wood_board"],
+          ["gripper-empty"]
+        ],
+        "gold_goal": [["painted", "paint_can", "wood_board"]],
+        "plan_actions": ["pick", "paint"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {
+          "can-paint": ["paint_can", "paint_brush"],
+          "can-be-painted": ["wood_board", "metal_plate"]
+        },
+        "affordances_forbidden": [["can-paint", "hammer"]]
+      }
+    },
+    {
+      "id": "explicit_clamp",
+      "task": "clamp the wood board",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "clamp",
+        "required_init": [["on", "wood_board", "table"], ["clear", "wood_board"], ["gripper-empty"]],
+        "gold_goal": [["clamped", "wood_board"]],
+        "plan_actions": ["pick", "clamp"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-clamped": ["wood_board", "wood_block", "wood_block2"]},
+        "affordances_forbidden": [["can-be-clamped", "hammer"]]
+      }
+    },
+    {
+      "id": "implicit_clamp",
+      "task": "the wood board should be secured in the clamp",
+      "world": "workshop",
+      "phrasing": "implicit",
+      "family": "needs_enrichment",
+      "expect": {
+        "template": "manipulation_base",
+        "completeness": "incomplete",
+        "skill": "clamp",
+        "required_init": [["on", "wood_board", "table"], ["clear", "wood_board"], ["gripper-empty"]],
+        "gold_goal": [["clamped", "wood_board"]],
+        "plan_actions": ["pick", "clamp"],
+        "select": {"plan": false},
+        "enrich": {"path": "enriched", "plan": true},
+        "r1": {"path": "enriched", "plan": true},
+        "affordances": {"can-be-clamped": ["wood_board", "wood_block", "wood_block2"]},
+        "affordances_forbidden": [["can-be-clamped", "hammer"]]
+      }
+    },
+    {
+      "id": "explicit_solder",
+      "task": "solder the broken wire on the board",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true},
+        "r1": {"path": "refused", "plan": false, "refuse": true}
+      },
+      "note": "Real gap, no catalog skill. Pass = refuse, never invent."
+    },
+    {
+      "id": "explicit_weld",
+      "task": "weld the metal plate to the wood board",
+      "world": "workshop",
+      "phrasing": "explicit",
+      "family": "ungenerable",
+      "expect": {
+        "template": "manipulation_base",
+        "select": {"plan": false, "refuse": true},
+        "enrich": {"path": "refused", "plan": false, "refuse": true},
+        "r1": {"path": "refused", "plan": false, "refuse": true}
+      }
+    }
+  ]
+}
